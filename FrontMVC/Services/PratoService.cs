@@ -174,9 +174,9 @@ namespace FrontMVC.Services
 
         }
 
-        public async Task<string> AtivarPrato(Guid id)
-        { 
-            PratoModel prato = await FiltrarId(id);
+        public async Task<string> AtivarPrato(Guid id,PratoModel prato)
+        {
+            //PratoModel prato =await FiltrarId(id);
 
             if (prato.Status)
                 return "Prato já está Ativo";
