@@ -1,4 +1,5 @@
-﻿using FrontMVC.Interfaces;
+﻿using FrontMVC.Helpers;
+using FrontMVC.Interfaces;
 using FrontMVC.Models.Prato;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
@@ -20,15 +21,15 @@ namespace FrontMVC.Services
         }
         public async Task<IEnumerable<PratoModel>> Listar()
         {
-            string token = tokenService.GetToken();
+            //string token = tokenService.GetToken();
             List<PratoModel>? list = new List<PratoModel>();
 
-            client.BaseAddress = new Uri(configuration["EndPointsDEV:API_Prato"]);
-            client.DefaultRequestHeaders.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-            new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
+            //client.BaseAddress = new Uri(configuration["EndPointsDEV:API_Prato"]);
+            //client.DefaultRequestHeaders.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            client = new ClientHelpers(tokenService).gerarClienComToken(configuration["EndPointsDEV:API_Prato"]);
             HttpResponseMessage response = await client.GetAsync("Listar");
 
             if (response.IsSuccessStatusCode)
