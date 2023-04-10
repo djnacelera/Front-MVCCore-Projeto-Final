@@ -51,6 +51,81 @@ namespace FrontMVC.Controllers
                 throw new Exception("Erro");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var lista = await pratoService.FiltrarId(id);
+
+            return View(lista);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(PratoModel prato)
+        {
+            var retorno = await pratoService.Excluir(prato.Id);
+
+            if (retorno != null)
+                return RedirectToAction("Index");
+            else
+                throw new Exception("Erro");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Alterar(Guid id)
+        {
+            var lista = await pratoService.FiltrarId(id);
+
+            lista.ConverterBase64ParaJpg();
+
+
+            return View(lista);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Alterar(PratoModel prato)
+        {
+            if (prato.FotoBase != null)
+                prato.Foto = await pratoService.ConverteImg(prato.FotoBase);
+
+            var retorno = await pratoService.Atualizar(prato, prato.Id);
+
+            if (retorno != null)
+                return RedirectToAction("Index");
+            else
+                throw new Exception("Erro");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AtivarPrato(Guid Id)
+        {
+
+            var retorno = await pratoService.AtivarPrato(Id);
+
+            if (retorno != null)
+                return RedirectToAction("Index");
+
+            else
+                throw new Exception("Erro");
+
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> InativarPrato(Guid Id)
+        {
+            var lista = await pratoService.FiltrarId(Id);
+
+            var retorno = await pratoService.InativarPrato(Id);
+
+            if (retorno != null)
+                return RedirectToAction("Index");
+
+            else
+                throw new Exception("Erro");
+
+
+        }
+
 
     }
 }
