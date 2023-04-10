@@ -12,25 +12,17 @@ namespace FrontMVC.Services
     {
         private readonly ClientHelpers _client;
         private IConfiguration configuration;
-        //private TokenService tokenService;
+        
 
         public PratoService(IConfiguration configuration, ClientHelpers client)
         {
             this.configuration = configuration;
             _client = client;
-            //this.tokenService = tokenService;
         }
         public async Task<IEnumerable<PratoModel>> Listar()
         {
-            //string token = tokenService.GetToken();
+            
             List<PratoModel>? list = new List<PratoModel>();
-
-            //client.BaseAddress = new Uri(configuration["EndPointsDEV:API_Prato"]);
-            //client.DefaultRequestHeaders.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(
-            //new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            //HttpClient client = _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]);
 
             HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).GetAsync("Listar");
 
@@ -43,27 +35,18 @@ namespace FrontMVC.Services
         }
         public async Task<PratoModel> Adicionar(PratoModel pratoModel)
         {
-            //string token = tokenService.GetToken();
+       
+            string json = JsonConvert.SerializeObject(pratoModel); 
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            //client.BaseAddress = new Uri(configuration["EndPointsDEV:API_Prato"]);
-            //client.DefaultRequestHeaders.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(
-            //new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).PostAsync("Incluir", httpContent);
 
-            //string json = JsonConvert.SerializeObject(pratoModel); 
-            //StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            if (response.IsSuccessStatusCode)
+            {
+                string sc = "Sucesso";
+            }
 
-
-            //HttpResponseMessage response = await client.PostAsync("Incluir", httpContent);
-
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    string sc = "Sucesso";
-            //}
-
-            //return pratoModel;
-            throw new NotImplementedException();
+            return pratoModel;  
         }
 
         public Task<PratoModel> Atualizar(PratoModel entity, Guid id)
