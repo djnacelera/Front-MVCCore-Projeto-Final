@@ -3,9 +3,9 @@ using System.Net.Http.Headers;
 
 namespace FrontMVC.Helpers
 {
-    public class ClientHelpers
+    public class ClientHelpers : HttpClient
     {
-        private TokenService tokenService;
+        private readonly TokenService tokenService;
 
         public ClientHelpers(TokenService tokenService)
         {

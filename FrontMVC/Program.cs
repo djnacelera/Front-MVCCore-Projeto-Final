@@ -1,4 +1,5 @@
 using FrontMVC.Data;
+using FrontMVC.Helpers;
 using FrontMVC.Interfaces;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IServicePrato<PratoModel>, PratoService>();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ClientHelpers>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
