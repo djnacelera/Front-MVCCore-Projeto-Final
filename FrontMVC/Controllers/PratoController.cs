@@ -113,9 +113,8 @@ namespace FrontMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> InativarPrato(Guid Id)
         {
-            var lista = await pratoService.FiltrarId(Id);
-
-            var retorno = await pratoService.InativarPrato(Id);
+            PratoModel prato = await pratoService.FiltrarId(Id);
+            var retorno = await pratoService.InativarPrato(Id, prato);
 
             if (retorno != null)
                 return RedirectToAction("Index");

@@ -6,6 +6,6 @@ namespace FrontMVC.Interfaces
     {
         Task<string> ConverteImg(IFormFile foto);
         Task<string> AtivarPrato(Guid id,PratoModel prato);
-        Task<string> InativarPrato(Guid id);
+        Task<string> InativarPrato(Guid id, PratoModel prato);
     }
 }

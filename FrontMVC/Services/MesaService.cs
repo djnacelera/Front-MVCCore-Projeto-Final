@@ -4,7 +4,7 @@ using FrontMVC.Models.Prato;
 
 namespace FrontMVC.Services
 {
-    public class MesaService : IServicePrato<MesaModel>
+    public class MesaService : IService<MesaModel>
     {
         public Task<MesaModel> Adicionar(MesaModel entity)
         {

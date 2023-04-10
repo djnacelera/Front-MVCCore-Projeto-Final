@@ -65,9 +65,13 @@
                     @*@Html.DisplayFor(modelItem => item.Foto)*@
                 </td>
                 <td>
+                    
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
                     @if (item.Status)
                     {
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-@item.Id">Detalhes</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal-@item.Id">Desativar</button>
                         <!-- Modal -->
                         <div class="modal fade" id="myModal-@item.Id" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
                             <form method="post" asp-action="InativarPrato">
@@ -75,7 +79,7 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">Deseja ativar este prato?</h5>
+                                            <h5 class="modal-title" id="ModalLabel">Deseja INATIVAR este prato?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -94,7 +98,7 @@
                     }
                     else
                     {
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-@item.Id">Detalhes</button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal-@item.Id">Ativar</button>
                         <!-- Modal -->
 
                         <div class="modal fade" id="myModal-@item.Id" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -103,7 +107,7 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="ModalLabel">Deseja ativar este prato?</h5>
+                                            <h5 class="modal-title" id="ModalLabel">Deseja ATIVAR este prato?</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -120,14 +124,10 @@
                             </form>
                         </div>
                     }
-                    @Html.DisplayFor(modelItem => item.Valor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
                     @Html.ActionLink("Alterar", "Alterar",  new {id = item.Id}) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Adicionar", "Adicionar", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
                 </td>
             </tr>
