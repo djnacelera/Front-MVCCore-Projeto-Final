@@ -1,7 +1,10 @@
+using AutoMapper;
 using FrontMVC.Data;
 using FrontMVC.Helpers;
 using FrontMVC.Interfaces;
+using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
+using FrontMVC.Profiles;
 using FrontMVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +18,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IServicePrato<PratoModel>, PratoService>();
+builder.Services.AddScoped<IService<MesaModel>, MesaService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<ClientHelpers>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new MesaProfile());
+  
+});
+var mapper = config.CreateMapper();
 
+builder.Services.AddSingleton(mapper);
 
 //builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
 //{

@@ -1,4 +1,5 @@
 ﻿using FrontMVC.Services;
+using NuGet.Common;
 using System.Net.Http.Headers;
 
 namespace FrontMVC.Helpers
@@ -6,15 +7,14 @@ namespace FrontMVC.Helpers
     public class ClientHelpers : HttpClient
     {
         private readonly TokenService tokenService;
-
+        HttpClient client = new HttpClient();
         public ClientHelpers(TokenService tokenService)
         {
             this.tokenService = tokenService;
         }
 
         public HttpClient gerarClienComToken(string uri)
-        {
-            HttpClient client = new HttpClient();
+        {            
             string token = tokenService.GetToken();
             client.BaseAddress = new Uri(uri);
             client.DefaultRequestHeaders.Clear();
@@ -23,6 +23,12 @@ namespace FrontMVC.Helpers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return client;
 
+        }
+        public HttpClient gerarClienComTokenPost()
+        {
+            string token = tokenService.GetToken();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            return client;
         }
     }
 }

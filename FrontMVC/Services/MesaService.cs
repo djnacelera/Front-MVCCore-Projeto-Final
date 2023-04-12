@@ -1,22 +1,38 @@
-﻿using FrontMVC.Interfaces;
+﻿using AutoMapper;
+using FrontMVC.Helpers;
+using FrontMVC.Interfaces;
 using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
+using Newtonsoft.Json;
 
 namespace FrontMVC.Services
 {
-    public class MesaService : IServicePrato<MesaModel>
+    public class MesaService : IService<MesaModel>
     {
-        public Task<MesaModel> Adicionar(MesaModel entity)
+        private readonly ClientHelpers _client;
+        private IConfiguration configuration;
+        private readonly IMapper _mapper;
+
+        public MesaService(ClientHelpers client, IConfiguration configuration, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _client = client;
+            this.configuration = configuration;
+            _mapper= mapper;
         }
+
+        public async Task<MesaModel> Adicionar(MesaModel entity)
+        {     
+            MesaIncluir mesaIncluir= _mapper.Map<MesaIncluir>(entity);
+            HttpResponseMessage response = await _client.gerarClienComTokenPost().PostAsJsonAsync(configuration["EndPointsDEV:API_Mesa"] + "Incluir", mesaIncluir);
+            if (response.IsSuccessStatusCode)
+            {
+                string sc = "Sucesso";
+            }
+            return entity;
+        }
+      
 
         public Task<MesaModel> Atualizar(MesaModel entity, Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> ConverteImg(IFormFile foto)
         {
             throw new NotImplementedException();
         }
@@ -31,9 +47,20 @@ namespace FrontMVC.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<MesaModel>> Listar()
+        public async Task<IEnumerable<MesaModel>> Listar()
         {
-            throw new NotImplementedException();
+            List<MesaModel>? list = new List<MesaModel>();
+
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Mesa"]).GetAsync("Listar");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var dados = response.Content.ReadAsStringAsync().Result;
+                list = JsonConvert.DeserializeObject<List<MesaModel>>(dados);
+            }
+            return list;
         }
+
+      
     }
 }
