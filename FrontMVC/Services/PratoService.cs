@@ -81,21 +81,18 @@ namespace FrontMVC.Services
 
         public async Task<PratoModel> FiltrarId(Guid id)
         {
-            List<PratoModel>? list = new List<PratoModel>();
             PratoModel prato = new PratoModel();
-
-
             string json = JsonConvert.SerializeObject(id);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).GetAsync($"Listar");
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).
+                GetAsync($"FiltrarPorId/{id}");
 
 
             if (response.IsSuccessStatusCode)
             {
                 var dados = response.Content.ReadAsStringAsync().Result;
-                list = JsonConvert.DeserializeObject<List<PratoModel>>(dados);
-                prato = list.Find(x => x.Id == id);
+                prato = JsonConvert.DeserializeObject<PratoModel>(dados);
             }
             return prato;
 
@@ -123,18 +120,19 @@ namespace FrontMVC.Services
 
         }
 
-        public async Task<string> AtivarPrato(Guid id,PratoModel prato)
+        public async Task<string> AtivarPrato(Guid id,bool prato)
         {
 
-            if (prato.Status)
+            if (prato)
                 return "Prato já está Ativo";
 
-            prato.Status = true;
+            prato = true;
 
             string json = JsonConvert.SerializeObject(prato);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).PutAsync($"AtivarPrato/{id}", httpContent);
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).
+                PutAsync($"AtivarPrato/{id}", httpContent);
 
             string sc = "Erro";
 
@@ -145,12 +143,12 @@ namespace FrontMVC.Services
 
             return sc;
         }
-        public async Task<string> InativarPrato(Guid id, PratoModel prato)
+        public async Task<string> InativarPrato(Guid id, bool prato)
         {
-            if (!prato.Status)
+            if (!prato)
                 return "Prato já Inativo";
 
-            prato.Status = true;
+            prato = true;
 
             string json = JsonConvert.SerializeObject(prato);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");

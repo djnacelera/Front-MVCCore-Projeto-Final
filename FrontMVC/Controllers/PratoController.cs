@@ -51,18 +51,10 @@ namespace FrontMVC.Controllers
                 throw new Exception("Erro");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var lista = await pratoService.FiltrarId(id);
-
-            return View(lista);
-        }
-
         [HttpPost]
-        public async Task<ActionResult> Delete(PratoModel prato)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            var retorno = await pratoService.Excluir(prato.Id);
+            var retorno = await pratoService.Excluir(id);
 
             if (retorno != null)
                 return RedirectToAction("Index");
@@ -96,10 +88,9 @@ namespace FrontMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AtivarPrato(Guid Id)
+        public async Task<ActionResult> AtivarPrato(Guid id,bool status)
         {
-            PratoModel prato = await pratoService.FiltrarId(Id);
-            var retorno = await pratoService.AtivarPrato(Id, prato);
+            var retorno = await pratoService.AtivarPrato(id, status);
 
             if (retorno != null)
                 return RedirectToAction("Index");
@@ -111,10 +102,9 @@ namespace FrontMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> InativarPrato(Guid Id)
+        public async Task<ActionResult> InativarPrato(Guid id, bool status)
         {
-            PratoModel prato = await pratoService.FiltrarId(Id);
-            var retorno = await pratoService.InativarPrato(Id, prato);
+            var retorno = await pratoService.InativarPrato(id, status);
 
             if (retorno != null)
                 return RedirectToAction("Index");
@@ -124,6 +114,13 @@ namespace FrontMVC.Controllers
 
 
         }
+
+        public IActionResult DeleteConfirmationModal(string id)
+        {
+            ViewBag.Id = id;
+            return PartialView("_DeleteConfirmationModal");
+        }
+
 
 
     }
