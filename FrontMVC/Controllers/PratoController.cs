@@ -45,6 +45,7 @@ namespace FrontMVC.Controllers
 
             var retorno = await pratoService.Adicionar(Novo);
 
+
             if (retorno != null)
                 return RedirectToAction("Index");
             else
@@ -93,7 +94,10 @@ namespace FrontMVC.Controllers
             var retorno = await pratoService.AtivarPrato(id, status);
 
             if (retorno != null)
+            {
+                ViewData["Mensagem"] = "Operação realizada com sucesso!";
                 return RedirectToAction("Index");
+            }
 
             else
                 throw new Exception("Erro");

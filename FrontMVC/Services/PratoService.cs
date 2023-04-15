@@ -55,7 +55,8 @@ namespace FrontMVC.Services
             string json = JsonConvert.SerializeObject(entity);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"]).PutAsync($"Alterar/{id}", httpContent);
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"])
+                .PutAsync($"Alterar/{id}", httpContent);
 
             if (response.IsSuccessStatusCode)
             {

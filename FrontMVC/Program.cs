@@ -7,8 +7,11 @@ using FrontMVC.Models.Prato;
 using FrontMVC.Profiles;
 using FrontMVC.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,7 @@ builder.Services.AddScoped<ClientHelpers>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
 
 var config = new MapperConfiguration(cfg =>
 {
@@ -43,7 +47,19 @@ builder.Services.AddSingleton(mapper);
 //})
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
+//builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+//builder.Services.Configure<RequestLocalizationOptions>(options =>
+//{
+//    var supportedCultures = new[] { new CultureInfo("pt-BR") };
+//    options.DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR");
+//    options.SupportedCultures = supportedCultures;
+//    options.SupportedUICultures = supportedCultures;
+//});
+
 var app = builder.Build();
+
+//app.UseRequestLocalization(app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
