@@ -1,5 +1,6 @@
-﻿using System.Buffers.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace FrontMVC.Models.Prato
 {
@@ -11,6 +12,8 @@ namespace FrontMVC.Models.Prato
         public string Descricao { get; set; }
         public string Foto { get; set; }
         public IFormFile FotoBase { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Valor { get; set; }
         public bool Status { get; set; }
         public byte[] Jpg { get; set; }
