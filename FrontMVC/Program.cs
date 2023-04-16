@@ -2,6 +2,7 @@ using AutoMapper;
 using FrontMVC.Data;
 using FrontMVC.Helpers;
 using FrontMVC.Interfaces;
+using FrontMVC.Models.Log;
 using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
 using FrontMVC.Profiles;
@@ -20,6 +21,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IServicePrato<PratoModel>, PratoService>();
 builder.Services.AddScoped<IService<MesaModel>, MesaService>();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<IServiceLog<LogModel>, LogService>();
 builder.Services.AddScoped<ClientHelpers>();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();

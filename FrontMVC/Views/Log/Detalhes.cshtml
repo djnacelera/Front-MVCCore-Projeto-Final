@@ -1,0 +1,99 @@
+﻿@model FrontMVC.Models.Log.LogModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Log</h1>
+
+<hr />
+<br />
+
+<div class="ContainerFormCR">
+    <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-list-ul"></i> Lista</a>
+    <br />
+    <div class="card border-secondary row" style="width:70%">
+        <div class="card-header text-center" style="color: white; background-color: rgb(37,88,126); font-weight: bolder">Detalhes</div>
+        <div class="card-body text-secondary" style="text-align-last:center">
+            <form>
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" readonly />
+                </div>
+                <br />
+                <div class="card-body text-secondary row d-flex justify-content-around" style="padding:0">
+                    <div class="col-md-5" style="padding:0">
+                        <div class="form-group">
+                            <label asp-for="Tabela" class="control-label"></label>
+                            <input asp-for="Tabela" class="form-control" readonly />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="Funcionario" class="control-label"></label>
+                            <input asp-for="Funcionario" class="form-control" readonly />
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-5" style="padding:0">
+                        <div class="form-group">
+                            <label asp-for="Acao" class="control-label"></label>
+                            <input asp-for="Acao" class="form-control" readonly />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="IdTabela" class="control-label"></label>
+                            <input asp-for="IdTabela" class="form-control" readonly />
+                        </div>
+                        <br />
+                    </div>
+                </div>                              
+                <div class="form-group">
+                    <label asp-for="Dados" class="control-label"></label>
+                    <textarea asp-for="Dados" class="form-control" rows=10 readonly></textarea>
+                    @*<textarea class="control-label" readonly>@Html.DisplayFor(model => model.Dados)</textarea>*@
+                </div>
+            </form>
+        </div>
+    </div>
+    @*<dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tabela)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tabela)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Funcionario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Funcionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Acao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Acao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdTabela)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdTabela)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dados)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dados)
+        </dd>
+    </dl>*@
+</div>
+@*<div>
+    <a asp-action="Index">Voltar para a lista</a>
+</div>*@
