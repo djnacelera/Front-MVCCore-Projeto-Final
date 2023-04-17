@@ -13,8 +13,8 @@
             </div>
             <div class="modal-footer">
                 <form id="myForm" method="post" asp-action="">
-                    <input type="hidden" name="id" id="pratoId" value="" />
-                    <input type="hidden" name="status" id="pratoStatus" value="" />
+                    <input type="hidden" name="id" id="codId" value="" />
+                    <input type="hidden" name="status" id="codStatus" value="" />
                     <button type="submit" class="btn btn-primary">Sim</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </form>
@@ -30,8 +30,8 @@
         var status = button.data('status');
         var action = button.data('action');
         var title = button.data('title');
-        $("#pratoId").val(id);
-        $("#pratoStatus").val(status);
+        $("#codId").val(id);
+        $("#codStatus").val(status);
         $('#myForm').attr('action', action);
         $('#modal-action-title').html(title);
     });
