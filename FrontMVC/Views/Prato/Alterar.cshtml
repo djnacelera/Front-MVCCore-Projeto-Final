@@ -55,9 +55,6 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
         <script>
-            $(document).ready(function () {
-                $('#Valor').maskMoney({ prefix: 'R$ ', allowNegative: false, thousands: '', decimal: '.', affixesStay: false });
-            });
 
             var button = document.querySelector('.btn-toggle');
             var hiddenInput = document.querySelector('input[type=hidden]');
