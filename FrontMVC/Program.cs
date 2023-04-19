@@ -49,19 +49,18 @@ builder.Services.AddSingleton(mapper);
 //})
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-//builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-//builder.Services.Configure<RequestLocalizationOptions>(options =>
-//{
-//    var supportedCultures = new[] { new CultureInfo("pt-BR") };
-//    options.DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR");
-//    options.SupportedCultures = supportedCultures;
-//    options.SupportedUICultures = supportedCultures;
-//});
+
+
 
 var app = builder.Build();
 
-//app.UseRequestLocalization(app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value);
-
+var supportedCultures = new[] { new CultureInfo("en-US") };
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

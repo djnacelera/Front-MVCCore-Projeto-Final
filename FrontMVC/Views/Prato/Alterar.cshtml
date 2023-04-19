@@ -26,18 +26,20 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Foto" class="control-label"></label>
+                    <input type="hidden" asp-for="Foto" value=@Model.Foto />
                     <img class="form-control" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Jpg)" width="100" />
+
                 </div>
                 <div class="form-group">
                     <label asp-for="Valor" class="control-label"></label>
-                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+                    <input asp-for="Valor" class="form-control" type="text" data-val="true" data-val-required="Por favor, insira um valor" />
                     <span asp-validation-for="Valor" class="text-danger"></span>
                 </div>
                 <div class="form-group col-sm-5">
                     <label asp-for="Status" class="control-label"></label>
-                    <input type="hidden" asp-for="Status" value="false" />
-                    <button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button"
-                            aria-pressed="@((Model.Status ? "true" : "false"))" autocomplete="off">
+                    <input type="hidden" id="codStatus" asp-for="Status" value="@($"{Model.Status}".ToLower())" />
+                    <button type="button" class="btn btn-sm btn-secondary btn-toggle @(Model.Status ? "active" : "")" data-toggle="button"
+                            aria-pressed="@($"{Model.Status}".ToLower())" autocomplete="off">
                         <div class="handle"></div>
                     </button>
                 </div>
@@ -55,15 +57,15 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
         <script>
-
             var button = document.querySelector('.btn-toggle');
-            var hiddenInput = document.querySelector('input[type=hidden]');
+            var hiddenInput = document.querySelector('#codStatus');
 
             button.addEventListener('click', function () {
                 var pressed = button.getAttribute('aria-pressed') === 'true';
-                button.setAttribute('aria-pressed', !pressed);
+                button.setAttribute('aria-pressed', pressed);
                 hiddenInput.value = !pressed;
             });
+
 
         </script>
     }
