@@ -4,6 +4,7 @@ using FrontMVC.Interfaces;
 using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace FrontMVC.Services
 {
@@ -32,19 +33,40 @@ namespace FrontMVC.Services
         }
       
 
-        public Task<MesaModel> Atualizar(MesaModel entity, Guid id)
+        public async Task<MesaModel> Atualizar(MesaModel entity, Guid id)
         {
-            throw new NotImplementedException();
+            MesaAlterar mesaAlterar = _mapper.Map<MesaAlterar>(entity);
+            HttpResponseMessage response = await _client.gerarClienComTokenPost().PutAsJsonAsync(configuration["EndPointsDEV:API_Mesa"] + "Alterar/"+id, mesaAlterar);
+            if (response.IsSuccessStatusCode)
+            {
+                return entity;
+            }
+            throw new Exception("error");
         }
 
-        public Task<bool> Excluir(Guid id)
+        public async Task<bool> Excluir(Guid id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Mesa"]).DeleteAsync($"Deletar/{id}");
+
+            bool delete = false;
+            if (response.IsSuccessStatusCode)
+            {
+                delete = true;
+            }
+
+            return delete;
         }
 
-        public Task<MesaModel> FiltrarId(Guid id)
+        public async Task<MesaModel> FiltrarId(Guid id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Mesa"]).GetAsync($"FiltrarPorId/{id}");
+            MesaModel mesa = new MesaModel();
+            if (response.IsSuccessStatusCode)
+            {
+                var dados = response.Content.ReadAsStringAsync().Result;
+                mesa = JsonConvert.DeserializeObject<MesaModel>(dados);
+            }
+            return mesa;
         }
 
         public async Task<IEnumerable<MesaModel>> Listar()

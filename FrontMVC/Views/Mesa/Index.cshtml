@@ -43,41 +43,42 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInclusao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAlteracao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lugares)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clientes.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ocupada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ambiente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusMesa)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInclusao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataAlteracao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lugares)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clientes.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ocupada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ambiente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusMesa)
+                </td>
+                <td>
+                    @Html.ActionLink("Alterar", "Alterar", new { id=item.Id }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new {  id=item.Id}) |
+                    @Html.ActionLink("OcuparMesa", "OcuparMesa", new {  id=item.Id}) |
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
