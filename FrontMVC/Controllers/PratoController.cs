@@ -4,6 +4,7 @@ using FrontMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -82,25 +83,27 @@ namespace FrontMVC.Controllers
 
             var retorno = await pratoService.Atualizar(prato, prato.Id);
 
-            if (retorno != null)
+            if (retorno.DataAlteracao != prato.DataAlteracao)
+            {
+                TempData["MsgAlert"] = "Alterado com Sucesso";
                 return RedirectToAction("Index");
+            }
             else
-                throw new Exception("Erro");
+            {
+                TempData["MsgAlert"] = "Não alterado!";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult> AtivarPrato(Guid id,bool status)
+        public async Task<ActionResult> AtivarPrato(Guid id, bool status)
         {
             var retorno = await pratoService.AtivarPrato(id, status);
 
-            if (retorno != null)
-            {
-                ViewData["Mensagem"] = "Operação realizada com sucesso!";
-                return RedirectToAction("Index");
-            }
 
-            else
-                throw new Exception("Erro");
+            TempData["MsgAlert"] = retorno;
+            return RedirectToAction("Index");
+
 
 
         }
@@ -110,19 +113,10 @@ namespace FrontMVC.Controllers
         {
             var retorno = await pratoService.InativarPrato(id, status);
 
-            if (retorno != null)
-                return RedirectToAction("Index");
-
-            else
-                throw new Exception("Erro");
+            TempData["MsgAlert"] = retorno;
+            return RedirectToAction("Index");
 
 
-        }
-
-        public IActionResult DeleteConfirmationModal(string id)
-        {
-            ViewBag.Id = id;
-            return PartialView("_DeleteConfirmationModal");
         }
 
 

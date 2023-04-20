@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="~/FrontMVC.styles.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/alertify.min.css" />
+    <link rel="stylesheet" href="~/css/themes/default.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
 </head>
 <body>
     <header>
@@ -50,6 +54,7 @@
         <main role="main" class="pb-3">
             @RenderBody()
             @Html.Partial("_Modal")
+            @Html.Partial("_ModalDetails")
         </main>
     </div>
 
@@ -60,7 +65,9 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/alertify.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

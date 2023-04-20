@@ -139,7 +139,7 @@ namespace FrontMVC.Services
 
             if (response.IsSuccessStatusCode)
             {
-                sc = "Prato ativo com sucesso!";
+                sc = "Prato ativo com Sucesso!";
             }
 
             return sc;
@@ -160,7 +160,7 @@ namespace FrontMVC.Services
 
             if (response.IsSuccessStatusCode)
             {
-                sc = "Prato Inativo com sucesso!";
+                sc = "Prato Inativo com Sucesso!";
             }
 
             return sc;

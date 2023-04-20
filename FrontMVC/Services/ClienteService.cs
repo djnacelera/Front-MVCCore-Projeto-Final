@@ -16,19 +16,82 @@ namespace FrontMVC.Services
             _configuration = configuration;
         }
 
-        public Task<ClienteModel> Adicionar(ClienteModel entity)
+        public async Task<IEnumerable<ClienteModel>> Listar()
         {
-            throw new NotImplementedException();
+            List<ClienteModel>? list = new List<ClienteModel>();
+
+            HttpResponseMessage response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Cliente"]).GetAsync("Listar");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var dados = response.Content.ReadAsStringAsync().Result;
+                list = JsonConvert.DeserializeObject<List<ClienteModel>>(dados);
+            }
+            return list;
         }
 
-        public Task<ClienteModel> Atualizar(ClienteModel entity, Guid id)
+        public async Task<IEnumerable<ClienteModel>> ListarLike(string like)
         {
-            throw new NotImplementedException();
+            List<ClienteModel>? list = new List<ClienteModel>();
+
+            HttpResponseMessage response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Cliente"]).GetAsync("Listar");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var dados = response.Content.ReadAsStringAsync().Result;
+                list = JsonConvert.DeserializeObject<List<ClienteModel>>(dados);
+            }
+            IEnumerable<ClienteModel> enumerable = list.Where(c => c.CPF.Contains(like) || c.Nome.Contains(like));
+            return enumerable;
         }
 
-        public Task<bool> Excluir(Guid id)
+        public async Task<ClienteModel> Adicionar(ClienteModel cliente)
         {
-            throw new NotImplementedException();
+            string json = JsonConvert.SerializeObject(cliente);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Cliente"]).PostAsync("Incluir", httpContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string sc = "Sucesso";
+                string apiResponse = response.Content.ReadAsStringAsync().Result;
+                cliente = JsonConvert.DeserializeObject<ClienteModel>(apiResponse);
+            }
+
+            return cliente;
+        }
+
+        public async Task<ClienteModel> Atualizar(ClienteModel cliente, Guid id)
+        {
+            string json = JsonConvert.SerializeObject(cliente);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Cliente"])
+                .PutAsync($"Alterar/{id}", httpContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string sc = "Sucesso";
+                //cliente = FiltrarId(id);
+                string apiResponse = response.Content.ReadAsStringAsync().Result;
+                cliente = JsonConvert.DeserializeObject<ClienteModel>(apiResponse);
+            }
+
+            return cliente;
+        }
+
+        public async Task<bool> Excluir(Guid id)
+        {
+            HttpResponseMessage response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Cliente"]).DeleteAsync($"Deletar/{id}");
+
+            bool delete = false;
+            if (response.IsSuccessStatusCode)
+            {
+                delete = true;
+            }
+
+            return delete;
         }
 
         public async Task<ClienteModel> FiltrarId(Guid id)
@@ -65,20 +128,6 @@ namespace FrontMVC.Services
                 cliente = JsonConvert.DeserializeObject<ClienteModel>(dados);
             }
             return cliente;
-        }
-
-        public async Task<IEnumerable<ClienteModel>> Listar()
-        {
-            List<ClienteModel>? list = new List<ClienteModel>();
-
-            HttpResponseMessage response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Cliente"]).GetAsync("Listar");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var dados = response.Content.ReadAsStringAsync().Result;
-                list = JsonConvert.DeserializeObject<List<ClienteModel>>(dados);
-            }
-            return list;
         }
     }
 }

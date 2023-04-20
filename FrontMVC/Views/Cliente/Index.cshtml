@@ -7,15 +7,28 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Adicionar">Criar novo</a>
 </p>
+
+@using (Html.BeginForm("Index", "Cliente", FormMethod.Get))
+{
+    <div class="ContainerFormCR">
+        <div class="input-group">
+            <input class="form-control" @*id="cpf"*@ name="like" autocomplete="off"/>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+            </div>
+        </div>
+    </div>    
+}
+
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.DataInclusao)
             </th>
             <th>
@@ -31,29 +44,46 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DataInclusao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAlteracao)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataInclusao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataAlteracao)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPF)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Alterar", "Alterar", new { id=item.Id }) |
+                        @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) @*|
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                    </td>
+                </tr>
+        }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        $(function () {
+            var message = '@TempData["MsgAlert"]'
+            if (message.includes("Sucesso"))
+                alertify.success(message);
+            else if (message != '')
+                alertify.error(message);
+        });
+                
+        $(document).ready(function () {
+            var $seuCampoCpf = $("#CPF");
+            $seuCampoCpf.mask('000.000.000-00', { reverse: true });
+        });    
+    </script>
+
+}
