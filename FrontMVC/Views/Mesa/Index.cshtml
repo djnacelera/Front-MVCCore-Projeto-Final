@@ -2,25 +2,16 @@
 
 @{
     ViewData["Title"] = "Index";
+    
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Adicionar">Cadastrar Mesa</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInclusao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAlteracao)
-            </th>
+        <tr>       
+           
             <th>
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
@@ -43,41 +34,41 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInclusao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAlteracao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lugares)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clientes.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ocupada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ambiente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusMesa)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>             
+                                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lugares)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clientes.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ocupada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ambiente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusMesa)
+                </td>
+                <td>
+                   
+                    @{var x= item.Ocupada ? "Desocupar" : "Ocupar";}
+                    @Html.ActionLink("Alterar", "Alterar", new { id=item.Id }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new {  id=item.Id}) |
+                    @if (item.StatusMesa ==FrontMVC.Models.Enuns.StatusMesa.Disponivel){
+                        @Html.ActionLink( @x,"OcuparMesa", new {  id=item.Id})
+                        
+                    }else{ 
+                        @Html.Label("Mesa Indisponivel")
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

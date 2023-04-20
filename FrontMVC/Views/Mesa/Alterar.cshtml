@@ -1,16 +1,20 @@
-﻿@model FrontMVC.Models.Mesa.MesaIncluir
+﻿@model FrontMVC.Models.Mesa.MesaAlterar
 
 @{
-    ViewData["Title"] = "Cadastrar";
+    ViewData["Title"] = "Alterar Mesa";
 }
 
-<h1>Cadastro de Mesa</h1>
+<h1>Alterar Mesa</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Adicionar">
+        <form asp-action="Alterar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">                
+                <input type="hidden" asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
