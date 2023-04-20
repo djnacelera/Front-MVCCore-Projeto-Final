@@ -3,12 +3,13 @@ using FrontMVC.Helpers;
 using FrontMVC.Interfaces;
 using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace FrontMVC.Services
 {
-    public class MesaService : IService<MesaModel>
+    public class MesaService : IServiceMesa<MesaModel>
     {
         private readonly ClientHelpers _client;
         private IConfiguration configuration;
@@ -83,6 +84,30 @@ namespace FrontMVC.Services
             return list;
         }
 
-      
+        public async Task<OcuparMesa> OcuparMesa(OcuparMesa ocuparMesa)
+        {
+            OcuparMesaPost Post = new OcuparMesaPost
+            {
+                ClienteId = ocuparMesa.Clientes.Id,
+                MesaId = ocuparMesa.Id
+            };
+
+            HttpResponseMessage response = await _client.gerarClienComTokenPost().PutAsJsonAsync(configuration["EndPointsDEV:API_Mesa"] + "OcuparMesa/", Post);
+            if (response.IsSuccessStatusCode)
+            {
+                return ocuparMesa;
+            }
+            throw new Exception("error");
+        }
+
+        public async Task<bool> DesocuparMesa(Guid id)
+        {
+            HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Mesa"]).PutAsJsonAsync($"DesocuparMesa/{id}", id);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            throw new Exception("error");
+        }
     }
 }

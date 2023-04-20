@@ -24,11 +24,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IServicePrato<PratoModel>, PratoService>();
 builder.Services.AddScoped<IServiceCliente<ClienteModel>, ClienteService>();
-builder.Services.AddScoped<IService<MesaModel>, MesaService>();
+builder.Services.AddScoped<IServiceMesa<MesaModel>, MesaService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<IServiceLog<LogModel>, LogService>();
 builder.Services.AddScoped<ClientHelpers>();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 

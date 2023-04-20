@@ -10,6 +10,7 @@ namespace FrontMVC.Profiles
             CreateMap<MesaModel, MesaIncluir>().ReverseMap();
             CreateMap<MesaModel, MesaAlterar>().ReverseMap();
             CreateMap<MesaModel, OcuparMesa>().ReverseMap();
+            CreateMap<MesaModel, OcuparMesaPost>().ReverseMap();
         }
     }
 }

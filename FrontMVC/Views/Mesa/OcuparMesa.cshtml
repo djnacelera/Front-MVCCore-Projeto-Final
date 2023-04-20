@@ -13,15 +13,23 @@
         <form asp-action="OcuparMesa">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <input type="hidden" asp-for="Clientes.Id" id="clienteID" class="form-control" />
+                <span asp-validation-for="Clientes.Id" class="text-danger"></span>
+
                 <label asp-for="Clientes.Nome" class="control-label"></label>
-                <input asp-for="Clientes.Nome" class="form-control" />
+                <input asp-for="Clientes.Nome" id="nome" class="form-control" disabled />
                 <span asp-validation-for="Clientes.Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Clientes.CPF" class="control-label"></label>
-                <input asp-for="Clientes.CPF" class="form-control" />
+                <input asp-for="Clientes.CPF" id="cpf" class="form-control" />
                 <span asp-validation-for="Clientes.CPF" class="text-danger"></span>
             </div>
+            @if (Model.Clientes == null){
+            <div class="form-group">
+                <input id="btnBuscar"  name="btnBuscar" value="Buscar" class="btn btn-primary" />
+            </div>
+            }
             <div class="form-group">
                 <input type="hidden" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
@@ -31,9 +39,13 @@
                 <input asp-for="Descricao" class="form-control" disabled />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
+            @if (Model.Clientes == null){
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
+            }else{
+                @Html.ActionLink("DesocuparMesa", "DesocuparMesa",  new {id = Model.Id})
+            } 
         </form>
     </div>
 </div>
@@ -43,5 +55,40 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+<script type="text/jscript">
+
+    var cpf = $("#cpf").val()
+     $(document).ready(function () {
+        $('#btnBuscar').on('click', function () {
+            cpf = $("#cpf").val()
+            $.ajax
+                ({
+                    contentType: "text/plain",
+                    url: '/Cliente/BuscarCpf',
+                    type: 'GET',
+                    data: { cpf },
+                    success: function (dados){
+                        console.log(typeof(dados))
+                        if (dados !== undefined){
+                            $("#clienteID").val(dados.id)
+                            $("#cpf").val(dados.cpf)
+                            $("#nome").val(dados.nome)
+                        }else{
+                            $("#nome").val("")
+                            alert("Cpf Não localizado");
+                        }                      
+
+                        console.log(dados)
+                    },                   
+                    error: function (erro) {
+                        console.log(erro)
+                        
+                    }
+                });
+        });
+    });
+</script>

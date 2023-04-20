@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Adicionar">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -60,7 +60,7 @@
                 <td>
                     @Html.ActionLink("Alterar", "Alterar", new { id=item.Id }) |
                     @Html.ActionLink("Detalhes", "Detalhes", new {  id=item.Id}) |
-                    @Html.ActionLink("OcuparMesa", "OcuparMesa", new {  id=item.Id}) |
+                    @Html.ActionLink("Ocupar - Desocupar", "OcuparMesa", new {  id=item.Id}) |
                 </td>
             </tr>
         }
