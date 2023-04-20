@@ -2,12 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+    
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Adicionar">Create New</a>
+    <a asp-action="Adicionar">Cadastrar Mesa</a>
 </p>
 <table class="table">
     <thead>
@@ -58,9 +57,16 @@
                     @Html.DisplayFor(modelItem => item.StatusMesa)
                 </td>
                 <td>
+                   
+                    @{var x= item.Ocupada ? "Desocupar" : "Ocupar";}
                     @Html.ActionLink("Alterar", "Alterar", new { id=item.Id }) |
                     @Html.ActionLink("Detalhes", "Detalhes", new {  id=item.Id}) |
-                    @Html.ActionLink("Ocupar - Desocupar", "OcuparMesa", new {  id=item.Id}) |
+                    @if (item.StatusMesa ==FrontMVC.Models.Enuns.StatusMesa.Disponivel){
+                        @Html.ActionLink( @x,"OcuparMesa", new {  id=item.Id})
+                        
+                    }else{ 
+                        @Html.Label("Mesa Indisponivel")
+                    }
                 </td>
             </tr>
         }

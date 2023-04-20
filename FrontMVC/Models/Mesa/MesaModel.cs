@@ -12,7 +12,7 @@ namespace FrontMVC.Models.Mesa
         public int Lugares { get; set; }
         public Guid? ClienteId { get; set; }
         public ClienteModel? Clientes { get; set; }
-        public bool? Ocupada { get; set; }
+        public bool Ocupada { get; set; }
         public string Ambiente { get; set; }
         public StatusMesa StatusMesa { get; set; }
     }
