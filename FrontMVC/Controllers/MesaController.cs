@@ -55,20 +55,25 @@ namespace FrontMVC.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Alterar(MesaModel mesa)
-        {          
-
-            var retorno = await _service.Atualizar(mesa, mesa.Id);
-
-            if (retorno.DataAlteracao != mesa.DataAlteracao)
+        {
+            try
             {
+                var retorno = await _service.Atualizar(mesa, mesa.Id);
                 TempData["MsgAlert"] = "Mesa alterada sucesso!";
                 return RedirectToAction("Index");
             }
-            else
+            catch(Exception e)
             {
-                TempData["MsgAlert"] = "Tente Novamente mais tarde!";
+                TempData["MsgAlert"] = "Tente Novamente mais tarde!" + e.Message;
                 return RedirectToAction("Alterar");
             }
+            
+
+            
+               
+           
+             
+            
         }
 
         [HttpGet]
