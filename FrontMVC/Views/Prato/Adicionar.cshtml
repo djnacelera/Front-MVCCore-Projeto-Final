@@ -24,8 +24,9 @@
                     </div>
                 </div>
                 <div class="row row-space">
-                    <div class="col-2">
+                    <div class="col-5">
                         <div class="input-group">
+                            <label asp-for="Foto" class="control-label"></label>
                             <input asp-for="FotoBase" class="input--style-2" type="file" data-val="true" data-val-required="Por favor, selecione uma imagem" />
                         </div>
                     </div>
@@ -44,22 +45,6 @@
                         </div>
                     </div>
                 </div>
-
-                @*                <div class="form-group row">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" data-val="true" data-val-required="Por favor, insira uma descrição" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-                </div>
-                <div class="form-group row">
-                <label asp-for="FotoBase" class="control-label"></label>
-                <input asp-for="FotoBase" class="form-control" type="file" data-val="true" data-val-required="Por favor, selecione uma imagem" />
-                <span asp-validation-for="FotoBase" class="text-danger"></span>
-                </div>
-                <div class="form-group row">
-                <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" class="form-control" type="text" data-val="true" data-val-required="Por favor, insira um valor" />
-                <span asp-validation-for="Valor" class="text-danger"></span>
-                </div>*@
                 <div class="p-t-30">
                     <input type="submit" value="Salvar" class="btn btn--radius btn--green" />
                 </div>

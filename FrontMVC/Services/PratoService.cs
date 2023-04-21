@@ -1,5 +1,6 @@
 ﻿using FrontMVC.Helpers;
 using FrontMVC.Interfaces;
+using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -57,6 +58,8 @@ namespace FrontMVC.Services
 
             HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"])
                 .PutAsync($"Alterar/{id}", httpContent);
+
+
 
             if (response.IsSuccessStatusCode)
             {

@@ -40,6 +40,18 @@
   }
 }
 
+.col-5 {
+    width: -webkit-calc((100% - 60px));
+    width: -moz-calc((100% - 60px));
+    width: calc((100% - 60px));
+}
+
+@media (max-width: 767px) {
+    .col-5 {
+        width: 100%;
+    }
+}
+
 /* ==========================================================================
    #BOX-SIZING
    ========================================================================== */
@@ -472,7 +484,7 @@ input {
 }
 
 .card-2 .card-heading {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
+  background: url("../images/back_las.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
