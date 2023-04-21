@@ -5,6 +5,7 @@ using FrontMVC.Models.Prato;
 using FrontMVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace FrontMVC.Controllers
 {
@@ -58,10 +59,16 @@ namespace FrontMVC.Controllers
 
             var retorno = await _service.Atualizar(mesa, mesa.Id);
 
-            if (retorno != null)
+            if (retorno.DataAlteracao != mesa.DataAlteracao)
+            {
+                TempData["MsgAlert"] = "Mesa alterada sucesso!";
                 return RedirectToAction("Index");
+            }
             else
-                throw new Exception("Erro");
+            {
+                TempData["MsgAlert"] = "Tente Novamente mais tarde!";
+                return RedirectToAction("Alterar");
+            }
         }
 
         [HttpGet]
@@ -87,15 +94,22 @@ namespace FrontMVC.Controllers
             else
                 throw new Exception("Erro");
         }
-        
-        [HttpGet]
+
+        [HttpPost]
         public async Task<IActionResult> DesocuparMesa(Guid id)
         {
             var retorno = await _service.DesocuparMesa(id);
+
             if (retorno)
+            {
+                TempData["MsgAlert"] = "Mesa Desocupada com sucesso!";
                 return RedirectToAction("Index");
+            }
             else
-                throw new Exception("Erro");
+            {
+                TempData["MsgAlert"] = "Tente Novamente mais tarde!";
+                return RedirectToAction("Index");
+            }
         }
 
 
