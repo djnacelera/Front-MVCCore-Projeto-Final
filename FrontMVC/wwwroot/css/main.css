@@ -209,8 +209,12 @@ h6 {
 
 .wrapper--w960 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   max-width: 960px;
   padding-bottom: 40px;
+=======
+    max-width: 960px;
+>>>>>>> main
 =======
     max-width: 960px;
 >>>>>>> main
@@ -219,7 +223,10 @@ h6 {
 .wrapper--w680 {
     max-width: 680px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding-bottom: 40px;
+=======
+>>>>>>> main
 =======
 >>>>>>> main
 }
