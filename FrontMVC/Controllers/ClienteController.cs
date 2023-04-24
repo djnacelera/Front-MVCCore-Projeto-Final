@@ -30,17 +30,12 @@ namespace FrontMVC.Controllers
             return View(cliente);
         }
 
-        /*[HttpGet]
-        public async Task<IActionResult> BuscarCpf(string cpf)
+        [HttpGet]
+        public async Task<ClienteModel> BuscarCpf(string cpf)
         {
             var cliente = await _clienteService.FiltrarPorCpf(cpf);
-            if (cliente == null || cliente.CPF == null)
-            {
-                TempData["MsgAlert"] = "CPF não Cadastrado!";
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("Detalhes", new { id = cliente.Id });
-        }*/
+            return cliente;
+        }
 
         [HttpGet]
         public ActionResult Adicionar()
@@ -100,6 +95,7 @@ namespace FrontMVC.Controllers
                 return RedirectToAction("Index");
             }
         }
+
 
     }
 }

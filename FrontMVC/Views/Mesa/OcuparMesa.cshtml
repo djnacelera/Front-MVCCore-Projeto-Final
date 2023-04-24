@@ -3,56 +3,55 @@
 @{
     ViewData["Title"] = "OcuparMesa";
 }
+<div class="wrapper wrapper--w960">
+    <div class="card card-2">
+        <div class="card-heading2"></div>
+        <div class="card-body">
+            <h1>Ocupar Mesa</h1>
+            <form asp-action="OcuparMesa">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="Clientes.Id" id="clienteID" class="form-control" />
+                    <span asp-validation-for="Clientes.Id" class="text-danger"></span>
 
-<h1>OcuparMesa</h1>
+                    <label asp-for="Clientes.Nome" class="control-label" ></label>
+                    <input asp-for="Clientes.Nome" id="nome" class="form-control" disabled/>
+                    <span asp-validation-for="Clientes.Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Clientes.CPF" class="control-label"></label>
+                    <input asp-for="Clientes.CPF" id="cpf" class="form-control" />
+                    <span asp-validation-for="Clientes.CPF" class="text-danger"></span>
+                </div>
+                @if (Model.Clientes == null)
+                {
+                    <div class="form-group">
+                        <input id="btnBuscar" name="btnBuscar" value="Buscar" class="btn btn-primary" />
+                    </div>
+                }
+                <div class="form-group">
+                    <input type="hidden" asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control" disabled />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                              
+                    <div class="form-group">
+                        <input type="submit" value="Save" id="btnSalvar" class="btn btn-primary" disabled/>
+                 </div>
+               
 
-<h4>OcuparMesa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="OcuparMesa">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <input type="hidden" asp-for="Clientes.Id" id="clienteID" class="form-control" />
-                <span asp-validation-for="Clientes.Id" class="text-danger"></span>
-
-                <label asp-for="Clientes.Nome" class="control-label"></label>
-                <input asp-for="Clientes.Nome" id="nome" class="form-control" disabled />
-                <span asp-validation-for="Clientes.Nome" class="text-danger"></span>
+            </form>
+            <div>
+                <a asp-action="Index">Voltar</a>
             </div>
-            <div class="form-group">
-                <label asp-for="Clientes.CPF" class="control-label"></label>
-                <input asp-for="Clientes.CPF" id="cpf" class="form-control" />
-                <span asp-validation-for="Clientes.CPF" class="text-danger"></span>
-            </div>
-            @if (Model.Clientes == null){
-            <div class="form-group">
-                <input id="btnBuscar"  name="btnBuscar" value="Buscar" class="btn btn-primary" />
-            </div>
-            }
-            <div class="form-group">
-                <input type="hidden" asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" disabled />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            @if (Model.Clientes == null){
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-            }else{
-                @Html.ActionLink("DesocuparMesa", "DesocuparMesa",  new {id = Model.Id})
-            } 
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{
@@ -62,7 +61,7 @@
 <script type="text/jscript">
 
     var cpf = $("#cpf").val()
-     $(document).ready(function () {
+    $(document).ready(function () {
         $('#btnBuscar').on('click', function () {
             cpf = $("#cpf").val()
             $.ajax
@@ -71,22 +70,25 @@
                     url: '/Cliente/BuscarCpf',
                     type: 'GET',
                     data: { cpf },
-                    success: function (dados){
-                        console.log(typeof(dados))
-                        if (dados !== undefined){
+                    success: function (dados) {
+                        console.log(typeof (dados))
+                        if (dados !== undefined) {
                             $("#clienteID").val(dados.id)
                             $("#cpf").val(dados.cpf)
                             $("#nome").val(dados.nome)
-                        }else{
+                            $('#btnSalvar').removeAttr("disabled");
+                            
+                        } else {
                             $("#nome").val("")
                             alert("Cpf Não localizado");
-                        }                      
+                            $('#btnSalvar').attr('disabled', 'disabled');
+                        }
 
                         console.log(dados)
-                    },                   
+                    },
                     error: function (erro) {
                         console.log(erro)
-                        
+
                     }
                 });
         });
