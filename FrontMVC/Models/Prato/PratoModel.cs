@@ -10,6 +10,7 @@ namespace FrontMVC.Models.Prato
         public DateTime DataInclusao { get; set; }
         public DateTime? DataAlteracao { get; set; }
         public string Descricao { get; set; }
+        public string Titulo { get; set; }
         public string Foto { get; set; }
         public IFormFile FotoBase { get; set; }
 

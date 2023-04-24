@@ -13,8 +13,15 @@
             <form asp-action="Adicionar" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="input-group">
+                    <input class="input--style-2" type="text" placeholder="Titulo" asp-for="Titulo"
+                           data-val="true" data-val-required="Por favor, insira um Titulo">
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+
+                </div>
+                <div class="input-group">
                     <input class="input--style-2" type="text" placeholder="Descricao" asp-for="Descricao"
                            data-val="true" data-val-required="Por favor, insira uma descrição">
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
                 </div>
                 <div class="row row-space">
                     <div class="col-2">

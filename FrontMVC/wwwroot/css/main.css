@@ -204,15 +204,17 @@ h6 {
    #WRAPPER
    ========================================================================== */
 .wrapper {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 .wrapper--w960 {
   max-width: 960px;
+  padding-bottom: 40px;
 }
 
 .wrapper--w680 {
-  max-width: 680px;
+    max-width: 680px;
+    padding-bottom: 40px;
 }
 
 /* ==========================================================================
