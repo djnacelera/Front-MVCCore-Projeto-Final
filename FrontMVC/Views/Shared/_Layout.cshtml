@@ -33,6 +33,9 @@
     <link href="~/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <link href="~/css/main.css" rel="stylesheet" media="all">
 
+    <!-- Mascara CPF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -75,14 +78,35 @@
             @Html.Partial("_Modal")
             @Html.Partial("_ModalDetails")
             @Html.Partial("~/Views/Mesa/Modal/_ModalDetailsMesa.cshtml")
+            @Html.Partial("~/Views/Cliente/Modal/_ModalDetailsCliente.cshtml")
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - FrontMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+    </footer>*@
+
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid rodape p-3 text-center">
+            <div class="divLogoUsuario">
+                <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/images/logo.png" /></a>
+                @*<a style="text-decoration:none; color:rgb(200,200,200)" asp-area="" asp-controller="AlterarSenha" asp-action="Index">@ViewBag.UsuarioLogado <br />Alterar Senha</a>*@
+            </div>
+            <hr />
+            <p>@ViewBag.empresa &copy; - @DateTime.Now.Year</p>
+            <div class="sociais">
+                <a target="_blank" href=""><i class="fa fa-github"></i></a>
+                <a target="_blank" href=""><i class="fa fa-linkedin-square"></i></a>
+                <a target="_blank" href=""><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+        @*<div class="container">
+        &copy; 2022 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>*@
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/alertify.min.js"></script>
