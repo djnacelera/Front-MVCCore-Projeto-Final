@@ -59,14 +59,11 @@ namespace FrontMVC.Services
             HttpResponseMessage response = await _client.gerarClienComToken(configuration["EndPointsDEV:API_Prato"])
                 .PutAsync($"Alterar/{id}", httpContent);
 
-
-
             if (response.IsSuccessStatusCode)
             {
-                string sc = "Sucesso";
+                return entity;
             }
-
-            return entity;
+            throw new Exception("error");
         }
 
         public async Task<bool> Excluir(Guid id)

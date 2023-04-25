@@ -18,6 +18,9 @@
                     @Html.DisplayNameFor(model => model.Foto)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Descricao)
                 </th>
                 <th>
@@ -38,6 +41,9 @@
                     @Html.HiddenFor(modelItem => item.Id)
                     <td>
                         <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Jpg)" width="100" height="80" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Descricao)
@@ -73,7 +79,7 @@
                         <a asp-action="Alterar" asp-route-id="@item.Id" class="btn btn-sm btn-default">
                             <i class="fa-solid fa-pen fa-xl" style="color: #264d92;"></i>
                         </a>
-                        <a data-toggle="modal" data-target="#detailsModal" data-descricao="@item.Descricao" data-valor="@item.Valor"
+                        <a data-toggle="modal" data-target="#detailsModal"  data-titulo="@item.Titulo" data-descricao="@item.Descricao" data-valor="@item.Valor"
                        data-title="Detalhes" data-sts="@($"{item.Status}".ToLower())" data-foto="@item.Foto"
                        class="btn btn-sm btn-default">
                             <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>

@@ -83,8 +83,10 @@ namespace FrontMVC.Controllers
 
             var retorno = await pratoService.Atualizar(prato, prato.Id);
 
-            if (retorno.DataAlteracao != prato.DataAlteracao)
+
+            if (retorno != null)
             {
+
                 TempData["MsgAlert"] = "Alterado com Sucesso";
                 return RedirectToAction("Index");
             }
@@ -93,6 +95,7 @@ namespace FrontMVC.Controllers
                 TempData["MsgAlert"] = "Não alterado!";
                 return RedirectToAction("Index");
             }
+
         }
 
         [HttpPost]

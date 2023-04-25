@@ -11,7 +11,9 @@
             <div class="modal-body">
                 <ul class="list-group">
                     <img name="foto" id="codFoto" src="" alt="Foto do item" />
-
+                    <li class="list-group-item">
+                        <label name="titulo" id="codTitulo"></label>
+                    </li>
                     <li class="list-group-item">
                         <label name="descricao" id="codDescricao"></label>
                     </li>
@@ -37,6 +39,7 @@
 
         var foto = button.data('foto');
         var descricao = button.data('descricao');
+        var titulo = button.data('titulo');
 
         var valor = button.data('valor');
         var title = button.data('title');
@@ -51,6 +54,7 @@
         }
 
         $("#codDescricao").text(descricao);
+        $("#codTitulo").text(titulo);
         $("#codSts").text(statustexto);
         $("#codValor").text(valor);
 
