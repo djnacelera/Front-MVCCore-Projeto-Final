@@ -10,39 +10,36 @@
             <h1>Ocupar Mesa</h1>
             <form asp-action="OcuparMesa">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <input type="hidden" asp-for="Clientes.Id" id="clienteID" class="form-control" />
-                    <span asp-validation-for="Clientes.Id" class="text-danger"></span>
+                <input type="hidden" asp-for="Clientes.Id" id="clienteID" class="form-control" />
+                <input type="hidden" asp-for="Id" class="form-control" />
 
-                    <label asp-for="Clientes.Nome" class="control-label" ></label>
-                    <input asp-for="Clientes.Nome" id="nome" class="form-control" disabled/>
+                <div class="input-group">
+                    <input class="input--style-2" type="text" placeholder="Nome Cliente" asp-for="Clientes.Nome" id="nome"
+                           data-val="true" data-val-required="Por favor, insira o nome do Cliente">
                     <span asp-validation-for="Clientes.Nome" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Clientes.CPF" class="control-label"></label>
-                    <input asp-for="Clientes.CPF" id="cpf" class="form-control" />
+                <div class="input-group">
+                    <input id="cpf" class="input--style-2" type="text" placeholder="CPF Cliente" asp-for="Clientes.CPF"
+                           data-val="true" data-val-required="Por favor, insira o CPF do Cliente">
+                    @if (Model.Clientes == null)
+                    {
+                        <a id="btnBuscar" name="btnBuscar" value="Buscar" >
+                            <i class="fa-solid fa-magnifying-glass" style="color: #264d92;"></i>
+                        </a>
+
+                    }
                     <span asp-validation-for="Clientes.CPF" class="text-danger"></span>
                 </div>
-                @if (Model.Clientes == null)
-                {
-                    <div class="form-group">
-                        <input id="btnBuscar" name="btnBuscar" value="Buscar" class="btn btn-primary" />
-                    </div>
-                }
-                <div class="form-group">
-                    <input type="hidden" asp-for="Id" class="form-control" />
-                    <span asp-validation-for="Id" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Descricao" class="control-label"></label>
-                    <input asp-for="Descricao" class="form-control" disabled />
+                <div class="input-group">
+                    <input class="input--style-2" type="text" placeholder="Descricao" asp-for="Descricao"
+                           data-val="true" data-val-required="Por favor, insira uma Descricao" disabled>
                     <span asp-validation-for="Descricao" class="text-danger"></span>
                 </div>
-                              
-                    <div class="form-group">
-                        <input type="submit" value="Save" id="btnSalvar" class="btn btn-primary" disabled/>
-                 </div>
-               
+
+                <div class="form-group">
+                    <input type="submit" value="Save" id="btnSalvar" class="btn btn-primary" disabled />
+                </div>
+
 
             </form>
             <div>
@@ -77,7 +74,7 @@
                             $("#cpf").val(dados.cpf)
                             $("#nome").val(dados.nome)
                             $('#btnSalvar').removeAttr("disabled");
-                            
+
                         } else {
                             $("#nome").val("")
                             alert("Cpf Não localizado");

@@ -8,11 +8,11 @@
 
 <div class="container" align="center">
     <h1>Lista de Pratos</h1>
-
+    <a asp-action="Adicionar" class="btn btn-sm btn-default">
+        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #c14015;">Adicionar Novo Prato</i>
+    </a>
     <table class="table table-hover">
-
         <thead>
-
             <tr>
                 <th class="text-center">
                     @Html.DisplayNameFor(model => model.Foto)
@@ -32,33 +32,26 @@
                 <th class="text-center">
                     Ação
                 </th>
-
+            </tr>
         </thead>
         <tbody>
-            <tr>
-                <th class="text-lg-end" colspan="6">
-                    <a asp-action="Adicionar" class="btn btn-sm btn-default">
-                        <i class="fa-solid" style="color: #17922f;">Adicionar Novo Prato</i>
-                    </a>
-                </th>
-            </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     @Html.HiddenFor(modelItem => item.Id)
-                    <td>
+                    <td class ="text-center">
                         <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Jpg)" width="100" height="80" />
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Titulo)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Descricao)
                     </td>
-                    <td>
+                    <td class ="text-center">
                         @Html.DisplayFor(modelItem => item.Valor)
                     </td>
-                    <td>
+                    <td class ="text-center">
                         @if (item.Status)
                         {
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
@@ -76,7 +69,6 @@
                             </button>
                         }
                     </td>
-
                     <td>
                         <a data-toggle="modal" data-target="#exampleModal" data-id="@item.Id" data-action="Prato/Delete"
                        data-title="deletar prato" class="btn btn-sm btn-default">

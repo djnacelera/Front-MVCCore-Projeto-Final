@@ -208,27 +208,17 @@ h6 {
 }
 
 .wrapper--w960 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  max-width: 960px;
-  padding-bottom: 40px;
-=======
-    max-width: 960px;
->>>>>>> main
-=======
-    max-width: 960px;
->>>>>>> main
+    <<<<<<< HEAD <<<<<<< HEAD max-width: 960px;
+    padding-bottom: 40px;
+    ======= max-width: 960px;
+    >>>>>>> main ======= max-width: 960px;
+    >>>>>>> main
 }
 
 .wrapper--w680 {
     max-width: 680px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    padding-bottom: 40px;
-=======
->>>>>>> main
-=======
->>>>>>> main
+    <<<<<<< HEAD <<<<<<< HEAD padding-bottom: 40px;
+    ======= >>>>>>> main ======= >>>>>>> main
 }
 
 /* ==========================================================================
@@ -511,6 +501,12 @@ input {
         display: table-cell;
     }
 
+    .card-2 .card-heading3 {
+        background: url("../images/clientea.jpg") top left/cover no-repeat;
+        width: 29.1%;
+        display: table-cell;
+    }
+
     .card-2 .card-body {
         display: table-cell;
         padding: 80px 90px;
@@ -528,12 +524,20 @@ input {
             padding-top: 300px;
             background-position: left center;
         }
+
         .card-2 .card-heading2 {
             width: 100%;
             display: block;
             padding-top: 300px;
             background-position: left center;
         }
+        .card-2 .card-heading3 {
+            width: 100%;
+            display: block;
+            padding-top: 300px;
+            background-position: left center;
+        }
+
 
         .card-2 .card-body {
             display: block;

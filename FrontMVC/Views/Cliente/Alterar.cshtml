@@ -6,11 +6,12 @@
 
 <div class="wrapper wrapper--w960">
     <div class="card card-2">
-        <div class="card-heading"></div>
+        <div class="card-heading3"></div>
         <div class="card-body">
             <h2 class="title">Alterar Prato</h2>
             <form asp-action="Alterar" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
                 <div class="input-group">
                     <input class="input--style-2" type="text" placeholder="Nome" asp-for="Nome"
                            data-val="true" data-val-required="Por favor, insira um Nome">

@@ -35,11 +35,12 @@ body {
 
 
 .footer {
-    position: static;
-    left: 0;
+    border-top: 1px solid #333;
     bottom: 0;
-    width: 100%;;
-    text-align: center;
+    left: 0;
+    height: 40px;
+    position: fixed;
+    width: 100%;
 }
 .fixed {
     position: fixed;
