@@ -39,9 +39,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FrontMVC</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Menu Master</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -70,17 +70,52 @@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
+        </nav>*@
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
+            <div class="container-fluid justify-content: space-around">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fa-list-ul"></i></span>
+                </button>
+                <div class="divLogoUsuario">
+                    <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/images/logo.png" /></a>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 d-flex align-items-center">
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
+                        </li>
+                        <div class="vr"></div>
+
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Mesa" asp-action="Index">Mesa</a>
+                        </li>
+                        <div class="vr"></div>
+
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Prato" asp-action="Index">Prato</a>
+                        </li>
+                        <div class="vr"></div>
+
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Log" asp-action="Index">Log</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <main role="main" class="pb-3">
+        <div class="container">
             @RenderBody()
             @Html.Partial("_Modal")
             @Html.Partial("~/Views/Prato/Modal/_ModalDetails.cshtml")
             @Html.Partial("~/Views/Mesa/Modal/_ModalDetailsMesa.cshtml")
             @Html.Partial("~/Views/Cliente/Modal/_ModalDetailsCliente.cshtml")
-        </main>
-    </div>
+        </div>
+    </main>
 
     @*<footer class="border-top footer text-muted">
         <div class="container">
@@ -96,11 +131,11 @@
             </div>
             <hr />
             <p>@ViewBag.empresa &copy; - @DateTime.Now.Year</p>
-            <div class="sociais">
+            @*<div class="sociais">
                 <a target="_blank" href=""><i class="fa fa-github"></i></a>
                 <a target="_blank" href=""><i class="fa fa-linkedin-square"></i></a>
                 <a target="_blank" href=""><i class="fa fa-instagram"></i></a>
-            </div>
+            </div>*@
         </div>
         @*<div class="container">
         &copy; 2022 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
