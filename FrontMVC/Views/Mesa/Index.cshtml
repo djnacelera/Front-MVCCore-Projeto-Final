@@ -5,102 +5,107 @@
 
 }
 
-<p>
-    <a asp-action="Adicionar">Cadastrar Mesa</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lugares)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Clientes.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ocupada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ambiente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusMesa)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="container" align="center">
+    <h1>Lista de Mesas</h1>
+    <a asp-action="Adicionar" class="btn btn-sm btn-default">
+        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #c14015;">Adicionar de Mesa</i>
+    </a>
+    <table class="table table-hover">
+        <thead>
             <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lugares)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Clientes.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ocupada)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ambiente)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StatusMesa)
-                </td>
-                <td>
-
-                    @{
-                        var x = item.Ocupada ? "Desocupar" : "Ocupar";
-                    }
-                    <a asp-action="Alterar" asp-route-id="@item.Id" class="btn btn-sm btn-default">
-                        <i class="fa-solid fa-pen fa-xl" style="color: #264d92;"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#detailsModalMesa" data-descricao="@item.Descricao" data-qtlugares="@item.Lugares"
-                   data-ambiente="@item.Ambiente" data-status="@item.StatusMesa" data-ocupada="@item.Ocupada" data-clientenome="@item.Clientes?.Nome"
-                   data-clientecpf="@item.Clientes?.CPF"
-                   class="btn btn-sm btn-default">
-                        <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>
-                    </a>
-                    @if (item.StatusMesa == FrontMVC.Models.Enuns.StatusMesa.Reservado || item.StatusMesa == FrontMVC.Models.Enuns.StatusMesa.Indisponivel)
-                    {
-                        @Html.Label("Mesa Indisponivel")
-                    }
-                    else if (!item.Ocupada)
-                    {
-                        @Html.ActionLink( @x,"OcuparMesa", new {  id=item.Id})
-
-                    }
-
-                    else
-                    {
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
-                        data-id="@item.Id" data-status="@item.Ocupada" data-action="Mesa/DesocuparMesa"
-                        data-title="desocupar mesa">
-                            Deseocupar
-                        </button>
-                    }
-                </td>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Lugares)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Clientes.Nome)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Ocupada)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Ambiente)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.StatusMesa)
+                </th>
+                <th class="text-center"></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Lugares)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Clientes.Nome)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Ocupada)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Ambiente)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.StatusMesa)
+                    </td>
+                    <td class="text-center">
+                        @{
+                            var x = item.Ocupada ? "Desocupar" : "Ocupar";
+                        }
+
+                        <a asp-action="Alterar" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                            <i class="fa-solid fa-pen fa-xl" style="color: #264d92;"></i>
+                        </a>
+                        <a data-toggle="modal" data-target="#detailsModalMesa" data-descricao="@item.Descricao" data-qtlugares="@item.Lugares"
+                       data-ambiente="@item.Ambiente" data-status="@item.StatusMesa" data-ocupada="@item.Ocupada"
+                       data-clientenome="@item.Clientes?.Nome" data-clientecpf="@item.Clientes?.CPF" class="btn btn-sm btn-default">
+                            <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>
+                        </a>
+                        @if (item.StatusMesa == FrontMVC.Models.Enuns.StatusMesa.Reservado || item.StatusMesa == FrontMVC.Models.Enuns.StatusMesa.Indisponivel)
+                        {
+                            <a class="btn btn-sm btn-default">
+                                <i class="fa-solid fa-chair fa-xl" style="color: #e60505;"></i>
+                            </a>
+                        }
+                        else if (!item.Ocupada)
+                        {
+                            <a asp-action="OcuparMesa" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                                <i class="fa-solid fa-chair fa-xl" style="color: #039126;"></i>
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a type="button" data-toggle="modal" data-target="#exampleModal"
+                       data-id="@item.Id" data-status="@item.Ocupada" data-action="Mesa/DesocuparMesa"
+                       data-title="desocupar mesa" class="btn btn-sm btn-default">
+                                <i class="fa-solid fa-chair fa-xl" style="color: #eb7d00;"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @section Scripts {
-        <script>
-            $(function () {
-                var message = '@TempData["MsgAlert"]'
-                if (message.includes("Sucesso"))
-                    alertify.success(message);
-                else if (message != '')
-                    alertify.error(message);
-            });
-        </script>
+    <script>
+        $(function () {
+            var message = '@TempData["MsgAlert"]'
+            if (message.includes("Mesa alterada sucesso!"))
+                alertify.success(message);
+            else if (message != '')
+                alertify.error(message);
+        });
+    </script>
 }

@@ -4,48 +4,33 @@
     ViewData["Title"] = "Alterar";
 }
 
-<h1>Alterar</h1>
-
-<h4>ClienteModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Alterar" autocomplete="off">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataInclusao" class="control-label"></label>
-                <input asp-for="DataInclusao" class="form-control" />
-                <span asp-validation-for="DataInclusao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAlteracao" class="control-label"></label>
-                <input asp-for="DataAlteracao" class="form-control" />
-                <span asp-validation-for="DataAlteracao" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="wrapper wrapper--w960">
+    <div class="card card-2">
+        <div class="card-heading3"></div>
+        <div class="card-body">
+            <h2 class="title">Alterar Prato</h2>
+            <form asp-action="Alterar" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="input-group">
+                    <input class="input--style-2" type="text" placeholder="Nome" asp-for="Nome"
+                           data-val="true" data-val-required="Por favor, insira um Nome">
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="input-group">
+                    <input class="input--style-2" type="text" placeholder="CPF" asp-for="CPF"
+                           data-val="true" data-val-required="Por favor, insira um CPF">
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
+                <div class="p-t-30">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+                <div>
+                    <a asp-action="Index">Voltar</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

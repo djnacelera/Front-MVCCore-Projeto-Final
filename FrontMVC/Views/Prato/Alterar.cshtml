@@ -10,6 +10,7 @@
             <h2 class="title">Alterar Prato</h2>
             <form asp-action="Alterar" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id">
                 <div class="input-group">
                     <input class="input--style-2" type="text" placeholder="Titulo" asp-for="Titulo"
                            data-val="true" data-val-required="Por favor, insira um Titulo">

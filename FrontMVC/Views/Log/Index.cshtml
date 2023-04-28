@@ -4,56 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container" align="center">
+    <h1>Log's</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tabela)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Funcionario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Acao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdTabela)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Dados)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tabela)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Funcionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Acao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdTabela)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Dados)
-            </td>*@
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) @*|*@
-                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Tabela)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Funcionario)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Acao)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.IdTabela)
+                </th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Tabela)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Funcionario)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Acao)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.IdTabela)
+                    </td>
+                    <td class="text-center">
+                        @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) @*|*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -6,83 +6,62 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Adicionar">Cadastrar Cliente</a>
-</p>
-
-@using (Html.BeginForm("Index", "Cliente", FormMethod.Get))
-{
-    <div class="ContainerFormCR">
-        <div class="input-group">
-            <input class="form-control" @*id="cpf"*@ name="like" autocomplete="off"/>
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+<div class="container" align="center">
+    <h1>Lista de Clientes</h1>
+    <a asp-action="Adicionar" class="btn btn-sm btn-default">
+        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #c14015;">Adicionar um Novo Cliente</i>
+    </a>
+    @using (Html.BeginForm("Index", "Cliente", FormMethod.Get))
+    {
+        <div class="ContainerFormCR">
+            <div class="input-group">
+                <input class="form-control" @*id="cpf"*@ name="like" autocomplete="off" />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #264d92;"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>    
-}
-
-<table class="table">
-    <thead>
-        <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInclusao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAlteracao)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPF)
-            </th>
-            <th>Ação</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
+    }
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.CPF)
+                </th>
+                <th class="text-center">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataInclusao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataAlteracao)
-                    </td>*@
-                    <td>
+                    <td class="text-center" >
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @*@string.Format(new CultureInfo("pt-BR"), "{0:###.###.###-##}", item.CPF)*@
-                    @Html.DisplayFor(modelItem => item.CPFConvertido)
+                        @Html.DisplayFor(modelItem => item.CPFConvertido)
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a asp-action="Alterar" asp-route-id="@item.Id" class="btn btn-sm btn-default">
                             <i class="fa-solid fa-pen fa-xl" style="color: #264d92;"></i>
                         </a> |
                         <a data-toggle="modal" data-target="#detailsModalCliente" data-nome="@item.Nome" data-cod="@item.Id"
                        data-dtinc="@item.DataInclusao" data-dtalt="@item.DataAlteracao"
-                           data-cpf="@item.CPF" class="btn btn-sm btn-default">
+                       data-cpf="@item.CPF" class="btn btn-sm btn-default">
                             <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>
                         </a>
-
-
-                        @*@Html.ActionLink("Alterar", "Alterar", new { id=item.Id }) |
-                        @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
                     </td>
                 </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+</div>
 @section Scripts {
     <script>
         $(function () {
@@ -92,11 +71,11 @@
             else if (message != '')
                 alertify.error(message);
         });
-                
-        //$(document).ready(function () {
-        //    var $seuCampoCpf = $(".CPF");
-        //    $seuCampoCpf.mask('000.000.000-00', { reverse: true });
-        //});    
+
+                                                                        //$(document).ready(function () {
+                                                                        //    var $seuCampoCpf = $(".CPF");
+                                                                        //    $seuCampoCpf.mask('000.000.000-00', { reverse: true });
+                                                                        //});
     </script>
 
 }
