@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using X.PagedList;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace FrontMVC.Controllers
@@ -19,8 +20,11 @@ namespace FrontMVC.Controllers
             this.pratoService = pratoService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
             var list = await pratoService.Listar();
 
             foreach (var imagem in list)
@@ -28,8 +32,9 @@ namespace FrontMVC.Controllers
                 imagem.ConverterBase64ParaJpg();
             }
 
+            var pagedList = list.ToPagedList(pageNumber, pageSize);
 
-            return View(list);
+            return View(pagedList);
         }
 
         [HttpGet]

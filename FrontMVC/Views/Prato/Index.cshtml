@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FrontMVC.Models.Prato.PratoModel>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<FrontMVC.Models.Prato.PratoModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,16 +17,16 @@
         <thead>
             <tr>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Foto)
+                    @Html.DisplayNameFor(model => model)
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Titulo)
+                    @Html.DisplayNameFor(model => model)
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Descricao)
+                    @Html.DisplayNameFor(model => model)
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Valor)
+                    @Html.DisplayNameFor(model => model)
                 </th>
                 <th class="text-center">
                     Ativar/Desativar
@@ -39,7 +41,7 @@
             {
                 <tr>
                     @Html.HiddenFor(modelItem => item.Id)
-                    <td class ="text-center">
+                    <td class="text-center">
                         <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Jpg)" width="100" height="80" />
                     </td>
                     <td class="text-center">
@@ -48,10 +50,10 @@
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Descricao)
                     </td>
-                    <td class ="text-center">
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Valor)
                     </td>
-                    <td class ="text-center">
+                    <td class="text-center">
                         @if (item.Status)
                         {
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
@@ -87,6 +89,10 @@
             }
         </tbody>
     </table>
+    <div class="pager-container">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+
 </div>
 
 @section Scripts {
