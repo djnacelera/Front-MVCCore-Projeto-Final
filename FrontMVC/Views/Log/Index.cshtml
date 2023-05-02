@@ -45,7 +45,12 @@
                         @Html.DisplayFor(modelItem => item.IdTabela)
                     </td>
                     <td class="text-center">
-                        @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) @*|*@
+                        @*@Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) |*@
+                        <a data-toggle="modal" data-target="#detailsModalLog" data-tabela="@item.Tabela" 
+                            data-funcionario="@item.Funcionario" data-acao="@item.Acao" 
+                            data-codTabela="@item.IdTabela" class="btn btn-sm btn-default">
+                            <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>
+                        </a>
                     </td>
                 </tr>
             }
