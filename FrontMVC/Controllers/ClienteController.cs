@@ -4,6 +4,7 @@ using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace FrontMVC.Controllers
 {
@@ -16,11 +17,22 @@ namespace FrontMVC.Controllers
             _clienteService = clienteService;
         }
 
-        public async Task<IActionResult> Index(string? like)
-        {
-            IEnumerable<ClienteModel> list = like == null ? await _clienteService.Listar() : await _clienteService.ListarLike(like);
+        //public async Task<IActionResult> Index()
+        //{
                 
-            return View(list);
+        //    return View(list);
+        //}
+
+        public async Task<IActionResult> Index(string? like,int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            IEnumerable<ClienteModel> list = like == null ? await _clienteService.Listar() : await _clienteService.ListarLike(like);
+
+            var pagedList = list.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedList);
         }
 
         [HttpGet]

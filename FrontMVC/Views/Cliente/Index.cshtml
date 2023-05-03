@@ -1,5 +1,7 @@
-﻿@*@using System.Globalization*@
-@model IEnumerable<FrontMVC.Models.Cliente.ClienteModel>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model IPagedList<FrontMVC.Models.Cliente.ClienteModel>
 
 
 @{
@@ -9,7 +11,7 @@
 <div class="boxWhite" align="center">
     <h1>Lista de Clientes</h1>
     <a asp-action="Adicionar" class="btn btn-sm btn-default">
-        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #c14015;">Adicionar um Novo Cliente</i>
+        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #dd711a;">Adicionar um Novo Cliente</i>
     </a>
     @using (Html.BeginForm("Index", "Cliente", FormMethod.Get))
     {
@@ -28,10 +30,10 @@
         <thead>
             <tr>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Nome)
+                    Nome
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.CPF)
+                    CPF
                 </th>
                 <th class="text-center">Ação</th>
             </tr>
@@ -40,7 +42,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="text-center" >
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td class="text-center">
@@ -61,6 +63,14 @@
             }
         </tbody>
     </table>
+    <div class="pager-container">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions {
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" }
+        })
+    </div>
 </div>
 @section Scripts {
     <script>
@@ -72,10 +82,6 @@
                 alertify.error(message);
         });
 
-                                                                        //$(document).ready(function () {
-                                                                        //    var $seuCampoCpf = $(".CPF");
-                                                                        //    $seuCampoCpf.mask('000.000.000-00', { reverse: true });
-                                                                        //});
     </script>
 
 }

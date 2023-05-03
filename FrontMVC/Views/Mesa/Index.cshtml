@@ -1,4 +1,8 @@
-﻿@model IEnumerable<FrontMVC.Models.Mesa.MesaModel>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model IPagedList<FrontMVC.Models.Mesa.MesaModel>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -8,29 +12,29 @@
 <div class="boxWhite" align="center">
     <h1>Lista de Mesas</h1>
     <a asp-action="Adicionar" class="btn btn-sm btn-default">
-        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #c14015;">Adicionar de Mesa</i>
+        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #dd711a;">Adicionar de Mesa</i>
     </a>
     <table class="table table-hover">
         <thead>
             <tr>
 
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Descricao)
+                    Descrição
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Lugares)
+                    Lugares
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Clientes.Nome)
+                    Nome Cliente
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Ocupada)
+                    Ocupada
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Ambiente)
+                    Ambiente
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.StatusMesa)
+                    Status da Mesa
                 </th>
                 <th class="text-center"></th>
             </tr>
@@ -97,6 +101,14 @@
             }
         </tbody>
     </table>
+<div class="pager-container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions {
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" }
+    })
+</div>
 </div>
 @section Scripts {
     <script>

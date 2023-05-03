@@ -1,5 +1,6 @@
 ﻿@using X.PagedList;
 @using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
 @model IPagedList<FrontMVC.Models.Prato.PratoModel>
 
 @{
@@ -11,22 +12,22 @@
 <div class="boxWhite" align="center">
     <h1>Lista de Pratos</h1>
     <a asp-action="Adicionar" class="btn btn-sm btn-default">
-        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #c14015;">Adicionar Novo Prato</i>
+        <i class="fa-solid fa-pen-to-square fa-sm" style="color: #dd711a;">Adicionar Novo Prato</i>
     </a>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model)
+                    Imagem
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model)
+                    Titulo
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model)
+                    Descrição
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model)
+                    Valor
                 </th>
                 <th class="text-center">
                     Ativar/Desativar
@@ -90,7 +91,12 @@
         </tbody>
     </table>
     <div class="pager-container">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions {
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" }
+        })
     </div>
 
 </div>

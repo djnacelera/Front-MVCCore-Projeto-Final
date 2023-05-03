@@ -10,39 +10,31 @@
                     </button>
                 </div>
 
-                <div class="card card-2">
-                    <div class="card-heading">
-                        <div class="modal-body">
+                <div class="modal-body">
 
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <label>Tabela: </label>
-                                    <label name="tabela" id="codTabela"></label>
-                                </li>
-                                <li class="list-group-item">
-                                    <label>Funcionário: </label>
-                                    <label name="funcionario" id="codFuncionario"></label>
-                                </li>
-                                <li class="list-group-item">
-                                    <label>Ação: </label>
-                                    <label name="acao" id="codAcao"></label>
-                                </li>
-                                <li class="list-group-item">
-                                    <label>Id Tabela: </label>
-                                    <label name="idTabela" id="codIdTabela"></label>
-                                </li>
-                            </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <label>Tabela: </label>
+                            <label name="tabela" id="codTabela"></label>
+                        </li>
+                        <li class="list-group-item">
+                            <label>Ação: </label>
+                            <label name="acao" id="codAcao"></label>
+                        </li>
+                        <li class="list-group-item">
+                            <label>Id Tabela: </label>
+                            <label name="tabelaid" id="codIdTabela"></label>
+                        </li>
+                    </ul>
 
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </div>
                 </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -50,20 +42,20 @@
     $('#detailsModalLog').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
 
-        var varTabela = button.data('tabela');
-        var varFuncionario = button.data('funcionario');
-        var varAcao = button.data('acao');
-        var varIdTabela = button.data('dtinc').toString();
+        var tabela = button.data('tabela');
+        var funcionario = button.data('funcionario');
+        var acao = button.data('acao');
+        var tabelaid = button.data('tabelaid');
 
-        console.log(varTabela);
-        console.log(varFuncionario);
-        console.log(varAcao);
-        console.log(varIdTabela);
+        console.log(tabela);
+        console.log(funcionario);
+        console.log(acao);
+        console.log(tabelaid);
 
-        $("#codTabela").text(varTabela);
-        $("#codFuncionario").text(vaFuncionariod);
-        $("#codAcao").text(varAcao);
-        $("#codIdTabela").text(varIdTabela);
+        $("#codTabela").text(tabela);
+        $("#codFuncionario").text(funcionario);
+        $("#codAcao").text(acao);
+        $("#codIdTabela").text(tabelaid);
     });
 </script>
 

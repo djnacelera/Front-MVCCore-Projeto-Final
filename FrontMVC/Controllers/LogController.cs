@@ -1,7 +1,10 @@
 ﻿using FrontMVC.Interfaces;
+using FrontMVC.Models.Cliente;
 using FrontMVC.Models.Log;
 using FrontMVC.Models.Prato;
+using FrontMVC.Services;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace FrontMVC.Controllers
 {
@@ -14,11 +17,18 @@ namespace FrontMVC.Controllers
             _logService = logService;
         }
 
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string? like, int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             var list = await _logService.Listar();
-            return View(list);
+
+            var pagedList = list.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedList);
         }
+
 
         public async Task<IActionResult> Detalhes(Guid id)
         {

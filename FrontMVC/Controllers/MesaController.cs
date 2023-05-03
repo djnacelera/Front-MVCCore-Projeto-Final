@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using FrontMVC.Interfaces;
+using FrontMVC.Models.Cliente;
 using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using X.PagedList;
 
 namespace FrontMVC.Controllers
 {
@@ -19,11 +21,18 @@ namespace FrontMVC.Controllers
             _mapper = mapper;
         }
             
-        public async Task <IActionResult> Index()
+        public async Task<IActionResult> Index(string? like, int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
             IEnumerable<MesaModel> list = await _service.Listar();
-            return View(list);
+
+            var pagedList = list.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedList);
         }
+
 
         [HttpGet]
         public ActionResult Adicionar()

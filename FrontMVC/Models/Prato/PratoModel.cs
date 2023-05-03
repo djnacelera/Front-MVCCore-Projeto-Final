@@ -14,8 +14,6 @@ namespace FrontMVC.Models.Prato
         public string Foto { get; set; }
         public IFormFile FotoBase { get; set; }
 
-        public int PageNumber { get; set; } = 1;
-
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Valor { get; set; }
         public bool Status { get; set; }

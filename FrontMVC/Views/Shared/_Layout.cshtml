@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-@*    <meta charset="utf-8" />
+    @*    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-*@
+    *@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,63 +39,27 @@
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Menu Master</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Mesa" asp-action="Index">Mesa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Prato" asp-action="Index">Prato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Log" asp-action="Index">Log</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>*@
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
             <div class="container-fluid justify-content: space-around">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="fa-list-ul"></i></span>
                 </button>
                 <div class="divLogoUsuario">
-                    <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/images/logo.png" /></a>
+                    <a asp-controller="Home" asp-action="Index"><img style="max-width: 50px" src="~/images/logo.png" /></a>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 d-flex align-items-center">
-                        <li class="nav-item">
+                    <ul class="navbar-nav flex-grow-1 d-flex align-items-center" >
+                        <li class="nav-item" >
                             <a asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
                         </li>
-                        <div class="vr"></div>
 
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Mesa" asp-action="Index">Mesa</a>
                         </li>
-                        <div class="vr"></div>
-
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Prato" asp-action="Index">Prato</a>
                         </li>
-                        <div class="vr"></div>
-
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Log" asp-action="Index">Log</a>
                         </li>
@@ -114,32 +78,51 @@
             @Html.Partial("~/Views/Prato/Modal/_ModalDetails.cshtml")
             @Html.Partial("~/Views/Mesa/Modal/_ModalDetailsMesa.cshtml")
             @Html.Partial("~/Views/Cliente/Modal/_ModalDetailsCliente.cshtml")
+            @Html.Partial("~/Views/Log/Modal/_ModalDetailsLog.cshtml")
         </div>
     </main>
 
-    @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - FrontMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
+
 
     <footer class="border-top footer text-muted">
         <div class="container-fluid rodape p-3 text-center">
-            <div class="divLogoUsuario">
-                <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/images/logo.png" /></a>
-                @*<a style="text-decoration:none; color:rgb(200,200,200)" asp-area="" asp-controller="AlterarSenha" asp-action="Index">@ViewBag.UsuarioLogado <br />Alterar Senha</a>*@
+
+            <div class="row text-center">
+                <div class="col-md-4 box">
+                    <span class="copyright quick-links" style="color:white">
+                        Copyright &copy; Menu Master - @DateTime.Now.Year
+                    </span>
+                </div>
+                <div class="col-md-4 box">
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="https://github.com/djnacelera">
+                                <i class="fab fa-github fa-xl"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 box">
+                    <ul class="list-inline quick-links">
+                        <li class="list-inline-item">
+                            <a href="https://www.linkedin.com/in/douglasvaguiar/" >
+                                Douglas Aguiar
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.linkedin.com/in/nicolas-capelari/">
+                                Nicolas Capelari
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.linkedin.com/in/joao-sambrano/">
+                                João Sambrano
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <hr />
-            <p>@ViewBag.empresa &copy; - @DateTime.Now.Year</p>
-            @*<div class="sociais">
-                <a target="_blank" href=""><i class="fa fa-github"></i></a>
-                <a target="_blank" href=""><i class="fa fa-linkedin-square"></i></a>
-                <a target="_blank" href=""><i class="fa fa-instagram"></i></a>
-            </div>*@
         </div>
-        @*<div class="container">
-        &copy; 2022 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>*@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

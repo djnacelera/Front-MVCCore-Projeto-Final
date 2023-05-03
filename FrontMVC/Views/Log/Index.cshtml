@@ -1,29 +1,24 @@
-﻿@model IEnumerable<FrontMVC.Models.Log.LogModel>
-
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model IPagedList<FrontMVC.Models.Log.LogModel>
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="boxWhite" align="center">
     <h1>Log's</h1>
-
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Tabela)
+                    Tabela
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Funcionario)
+                    Ação Realizada
                 </th>
                 <th class="text-center">
-                    @Html.DisplayNameFor(model => model.Acao)
-                </th>
-                <th class="text-center">
-                    @Html.DisplayNameFor(model => model.IdTabela)
+                    Id da Tabela
                 </th>
                 <th class="text-center"></th>
             </tr>
@@ -36,24 +31,28 @@
                         @Html.DisplayFor(modelItem => item.Tabela)
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.Funcionario)
-                    </td>
-                    <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Acao)
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.IdTabela)
                     </td>
                     <td class="text-center">
-                        @*@Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) |*@
-                        <a data-toggle="modal" data-target="#detailsModalLog" data-tabela="@item.Tabela" 
-                            data-funcionario="@item.Funcionario" data-acao="@item.Acao" 
-                            data-codTabela="@item.IdTabela" class="btn btn-sm btn-default">
+                        <a data-toggle="modal" data-target="#detailsModalLog" data-tabela="@item.Tabela" data-funcionario="@item.Funcionario"
+                       data-acao="@item.Acao" data-tabelaid="@item.IdTabela.ToString()" class="btn btn-sm btn-default">
                             <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>
                         </a>
+                       
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+    <div class="pager-container">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions {
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" }
+        })
+    </div>
 </div>

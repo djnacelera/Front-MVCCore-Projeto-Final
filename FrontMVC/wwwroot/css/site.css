@@ -17,7 +17,7 @@ body {
     margin-bottom: 60px;
     font-family: 'Montserrat', 'Lato', 'Open Sans', 'Helvetica Neue', Helvetica, Calibri, Arial, sans-serif;
     color: #6b7381;
-    background: antiquewhite;
+    background: #efefef;
 }
 
 header {
@@ -28,7 +28,7 @@ header {
     header a {
         padding: 0px 10px;
         text-decoration: none;
-        color: rgb(200,200,200);
+        color: white;
     }
 
         header a:hover {
@@ -68,6 +68,17 @@ main {
     padding: 10px 0 0 0;
 }
 
+
+.footer a {
+    color: white !important;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: orange !important;
+        text-decoration: none;
+    }
+
 .boxWhite {
     background-color: white;
     padding: 10px;
@@ -76,14 +87,8 @@ main {
 
 
 .footer {
-    /*border-top: 1px solid #333;
-    bottom: 0;
-    left: 0;
-    height: 40px;
-    position: fixed;
-    width: 100%;*/
     background-color: rgb(20,58,86);
-    color: rgb(93,126,151);
+    color: white;
     line-height: 0;
 }
 
@@ -567,7 +572,7 @@ main {
         }
 
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
     .ContainerMenu {
         display: flex;
         flex-wrap: wrap;
