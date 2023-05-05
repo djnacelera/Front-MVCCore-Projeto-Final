@@ -2,6 +2,7 @@
 using FrontMVC.Interfaces;
 using FrontMVC.Models.Cliente;
 using FrontMVC.Models.Mesa;
+using FrontMVC.Models.Pedido;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -15,10 +16,12 @@ namespace FrontMVC.Controllers
     {
         private readonly IServiceMesa<MesaModel> _service;
         private readonly IMapper _mapper;
-        public MesaController(IServiceMesa<MesaModel> service, IMapper mapper)
+        private readonly IServicePedido<PedidoModel> _pedido;
+        public MesaController(IServiceMesa<MesaModel> service, IMapper mapper, IServicePedido<PedidoModel> pedido)
         {
             _service = service;
             _mapper = mapper;
+            _pedido = pedido;
         }
             
         public async Task<IActionResult> Index(string? like, int? page)
@@ -76,13 +79,6 @@ namespace FrontMVC.Controllers
                 TempData["MsgAlert"] = "Tente Novamente mais tarde!" + e.Message;
                 return RedirectToAction("Alterar");
             }
-            
-
-            
-               
-           
-             
-            
         }
 
         [HttpGet]
@@ -110,9 +106,11 @@ namespace FrontMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DesocuparMesa(Guid id)
+        public async Task<IActionResult> DesocuparMesa(Guid id, string cpf)
         {
-            var retorno = await _service.DesocuparMesa(id);
+            IEnumerable<PedidoModel> list = await _pedido.BaixarPedidosLiberarMesa(id, cpf);
+            return View(list);
+            /*var retorno = await _service.DesocuparMesa(id);
 
             if (retorno)
             {
@@ -123,9 +121,7 @@ namespace FrontMVC.Controllers
             {
                 TempData["MsgAlert"] = "Tente Novamente mais tarde!";
                 return RedirectToAction("Index");
-            }
+            }*/
         }
-
-
     }
 }

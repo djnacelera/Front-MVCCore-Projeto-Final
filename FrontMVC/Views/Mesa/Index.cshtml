@@ -28,6 +28,9 @@
                     Nome Cliente
                 </th>
                 <th class="text-center">
+                    CPF
+                </th>
+                <th class="text-center">
                     Ocupada
                 </th>
                 <th class="text-center">
@@ -52,6 +55,9 @@
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Clientes.Nome)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Clientes.CPF)
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Ocupada)
@@ -91,7 +97,7 @@
                         else
                         {
                             <a type="button" data-toggle="modal" data-target="#exampleModal"
-                       data-id="@item.Id" data-status="@item.Ocupada" data-action="Mesa/DesocuparMesa"
+                               data-id="@item.Id" data-cpf="@item.Clientes.CPF" data-status="@item.Ocupada" data-action="Mesa/DesocuparMesa"
                        data-title="desocupar mesa" class="btn btn-sm btn-default">
                                 <i class="fa-solid fa-chair fa-xl" style="color: #eb7d00;"></i>
                             </a>

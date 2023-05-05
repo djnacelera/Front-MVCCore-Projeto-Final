@@ -5,6 +5,7 @@ using FrontMVC.Interfaces;
 using FrontMVC.Models.Cliente;
 using FrontMVC.Models.Log;
 using FrontMVC.Models.Mesa;
+using FrontMVC.Models.Pedido;
 using FrontMVC.Models.Prato;
 using FrontMVC.Profiles;
 using FrontMVC.Services;
@@ -22,9 +23,11 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+//builder.Services.AddHttpClient();
 builder.Services.AddScoped<IServicePrato<PratoModel>, PratoService>();
 builder.Services.AddScoped<IServiceCliente<ClienteModel>, ClienteService>();
 builder.Services.AddScoped<IServiceMesa<MesaModel>, MesaService>();
+builder.Services.AddScoped<IServicePedido<PedidoModel>, PedidoService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<IServiceLog<LogModel>, LogService>();
 builder.Services.AddScoped<ClientHelpers>();
