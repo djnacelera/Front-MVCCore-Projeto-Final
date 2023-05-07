@@ -1,89 +1,88 @@
-﻿@model IEnumerable<FrontMVC.Models.Pedido.PedidoModel>
+﻿@model IEnumerable<FrontMVC.Models.Pedido.PedidosMesa>
 
 @{
     ViewData["Title"] = "DesocuparMesa";
 }
 
-<h1>DesocuparMesa</h1>
+<div class="wrapper wrapper--w960">
+    <div class="card card-2">
+        <div class="card-heading2 no-print"></div>
+        <div class="card-body">
+            @{
+                var firstItem = Model.FirstOrDefault();
+                if (firstItem != null)
+                {
+                    <h1 style="align-items: center">@Html.DisplayFor(modelItem => firstItem.DescMesa)</h1>
+                    <br />
+                    <h5 style="align-items: center">@Html.DisplayFor(modelItem => firstItem.Nome)</h5>
+                    <br />
+                    <hr />
+                }
+            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DescPrato)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantidade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Select(p => new { Prato = p.DescPrato, 
+                        Qtd = p.Quantidade, VlUnit = p.Valor / p.Quantidade, VlTotal = p.Valor})) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Prato)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Qtd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VlUnit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VlTotal)
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model.GroupBy(c => c.CPF).Select(g => new { Valor = g.Sum(c => c.Valor) }))
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <div class="form-group no-print">
+                <button onclick="printPage()" class="btn btn-primary">Imprimir</button>
+            </div>
+            <br />
+            <div class="no-print">
+                <a asp-action="Index">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInclusao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAlteracao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MesaId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PratoId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPF)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusPedido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DtRecebimento)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInclusao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAlteracao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MesaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PratoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusPedido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtRecebimento)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@section Scripts {
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
 }
-    </tbody>
-</table>

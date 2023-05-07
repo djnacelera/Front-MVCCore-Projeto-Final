@@ -16,8 +16,8 @@ namespace FrontMVC.Controllers
     {
         private readonly IServiceMesa<MesaModel> _service;
         private readonly IMapper _mapper;
-        private readonly IServicePedido<PedidoModel> _pedido;
-        public MesaController(IServiceMesa<MesaModel> service, IMapper mapper, IServicePedido<PedidoModel> pedido)
+        private readonly IServicePedido<PedidosMesa> _pedido;
+        public MesaController(IServiceMesa<MesaModel> service, IMapper mapper, IServicePedido<PedidosMesa> pedido)
         {
             _service = service;
             _mapper = mapper;
@@ -108,7 +108,7 @@ namespace FrontMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> DesocuparMesa(Guid id, string cpf)
         {
-            IEnumerable<PedidoModel> list = await _pedido.BaixarPedidosLiberarMesa(id, cpf);
+            IEnumerable<PedidosMesa> list = await _pedido.BaixarPedidosLiberarMesa(id, cpf);
             return View(list);
             /*var retorno = await _service.DesocuparMesa(id);
 

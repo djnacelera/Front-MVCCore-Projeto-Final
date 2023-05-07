@@ -7,3 +7,9 @@
     flex-wrap: wrap;
     align-items: center;
 }
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}

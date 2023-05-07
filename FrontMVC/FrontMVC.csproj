@@ -32,4 +32,11 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Mesa\Modal\_ModalDetailsMesa.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

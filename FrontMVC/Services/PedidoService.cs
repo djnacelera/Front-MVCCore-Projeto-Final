@@ -9,7 +9,7 @@ using System.Net.Http.Json;
 
 namespace FrontMVC.Services
 {
-    public class PedidoService : IServicePedido<PedidoModel>
+    public class PedidoService : IServicePedido<PedidosMesa>
     {
         private readonly ClientHelpers _client;
         private IConfiguration _configuration;
@@ -53,15 +53,15 @@ namespace FrontMVC.Services
             return pedido;
         }*/
 
-        public async Task<IEnumerable<PedidoModel>> BaixarPedidosLiberarMesa(Guid id, string cpf)
+        public async Task<IEnumerable<PedidosMesa>> BaixarPedidosLiberarMesa(Guid id, string cpf)
         {
-            IEnumerable<PedidoModel> pedidos = new List<PedidoModel>();
+            IEnumerable<PedidosMesa> pedidos = new List<PedidosMesa>();
             using (var response = await _client.gerarClienComToken(_configuration["EndPointsDEV:API_Pedido"]).PutAsJsonAsync($"BaixarPedidosLiberarMesa/{cpf}/{id}", id))
             {
                 if (response.IsSuccessStatusCode)
                 {
                     var dados = response.Content.ReadAsStringAsync().Result;
-                    pedidos = JsonConvert.DeserializeObject<List<PedidoModel>>(dados);
+                    pedidos = JsonConvert.DeserializeObject<List<PedidosMesa>>(dados);
                 }
             }
             return pedidos;

@@ -27,7 +27,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IServicePrato<PratoModel>, PratoService>();
 builder.Services.AddScoped<IServiceCliente<ClienteModel>, ClienteService>();
 builder.Services.AddScoped<IServiceMesa<MesaModel>, MesaService>();
-builder.Services.AddScoped<IServicePedido<PedidoModel>, PedidoService>();
+builder.Services.AddScoped<IServicePedido<PedidosMesa>, PedidoService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<IServiceLog<LogModel>, LogService>();
 builder.Services.AddScoped<ClientHelpers>();
