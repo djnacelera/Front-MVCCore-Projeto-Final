@@ -67,7 +67,7 @@ namespace FrontMVC.Controllers
                 return RedirectToAction("Index");
             }
             else
-                throw new Exception("Erro");
+                throw new Exception("Error");
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace FrontMVC.Controllers
                 return RedirectToAction("Index");
             }
             else
-                throw new Exception("Erro");
+                throw new Exception("Error");
         }
 
         [HttpGet]

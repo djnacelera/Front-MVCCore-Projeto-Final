@@ -21,7 +21,7 @@ body {
 }
 
 header {
-    background-color: rgb(37,88,126);
+    background-color: rgb(222, 105, 12);
     color: white;
 }
 
@@ -33,7 +33,7 @@ header {
 
         header a:hover {
             text-decoration: none;
-            color: white;
+            color: black;
         }
 
 .divLogoUsuario {
@@ -75,7 +75,7 @@ main {
 }
 
     a:hover {
-        color: orange !important;
+        color: black !important;
         text-decoration: none;
     }
 
@@ -87,7 +87,7 @@ main {
 
 
 .footer {
-    background-color: rgb(20,58,86);
+    background-color: rgb(222, 105, 12);
     color: white;
     line-height: 0;
 }

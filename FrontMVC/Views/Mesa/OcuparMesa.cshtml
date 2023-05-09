@@ -19,11 +19,11 @@
                     <span asp-validation-for="Clientes.Nome" class="text-danger"></span>
                 </div>
                 <div class="input-group">
-                    <input id="cpf" class="input--style-2" type="text" placeholder="CPF Cliente" asp-for="Clientes.CPF"
+                    <input id="cpf" class="form-control" type="text" placeholder="CPF Cliente" asp-for="Clientes.CPF"
                            data-val="true" data-val-required="Por favor, insira o CPF do Cliente">
                     @if (Model.Clientes == null)
                     {
-                        <a id="btnBuscar" name="btnBuscar" value="Buscar" >
+                        <a id="btnBuscar" name="btnBuscar" value="Buscar" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-magnifying-glass" style="color: #264d92;"></i>
                         </a>
 
@@ -42,7 +42,8 @@
 
 
             </form>
-            <div>
+            <br />
+            <div class="text-center">
                 <a asp-action="Index">Voltar</a>
             </div>
         </div>

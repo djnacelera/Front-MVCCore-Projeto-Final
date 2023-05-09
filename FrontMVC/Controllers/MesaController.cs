@@ -53,7 +53,7 @@ namespace FrontMVC.Controllers
             if (retorno != null)
                 return RedirectToAction("Index");
             else
-                throw new Exception("Erro");
+                throw new Exception("Error");
 
         }
 
@@ -102,7 +102,7 @@ namespace FrontMVC.Controllers
             if (retorno != null)
                 return RedirectToAction("Index");
             else
-                throw new Exception("Erro");
+                throw new Exception("Error");
         }
 
         [HttpPost]
