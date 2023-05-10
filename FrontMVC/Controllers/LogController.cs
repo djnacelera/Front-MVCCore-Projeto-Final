@@ -3,11 +3,13 @@ using FrontMVC.Models.Cliente;
 using FrontMVC.Models.Log;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace FrontMVC.Controllers
 {
+    [Authorize]
     public class LogController : Controller
     {
         private readonly IServiceLog<LogModel> _logService;
@@ -16,7 +18,6 @@ namespace FrontMVC.Controllers
         {
             _logService = logService;
         }
-
 
         public async Task<IActionResult> Index(string? like, int? page)
         {

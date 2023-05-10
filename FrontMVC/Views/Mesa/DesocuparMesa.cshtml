@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "DesocuparMesa";
+    string serializedData = ViewData["lista"] as string;
 }
 
 <div class="wrapper wrapper--w960">
@@ -37,8 +38,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.Select(p => new { Prato = p.DescPrato, 
-                        Qtd = p.Quantidade, VlUnit = p.Valor / p.Quantidade, VlTotal = p.Valor})) {
+                    @foreach (var item in Model.Select(p => new
+                    {
+                        Prato = p.DescPrato,
+                        Qtd = p.Quantidade,
+                        VlUnit = p.Valor / p.Quantidade,
+                        VlTotal = p.Valor
+                    }))
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Prato)
@@ -68,8 +75,13 @@
                 </tbody>
             </table>
             <br />
-            <div class="form-group no-print">
-                <button onclick="printPage()" class="btn btn-primary">Imprimir</button>
+            <div class="form-group no-print ">
+                <form method="post" action="@Url.Action("GerarPdf", "Comprovante")">
+                    <input type="hidden" name="model" value='@Json.Serialize(Model)' />
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </button>
+                </form>
             </div>
             <br />
             <br />
@@ -85,5 +97,6 @@
         function printPage() {
             window.print();
         }
+
     </script>
 }

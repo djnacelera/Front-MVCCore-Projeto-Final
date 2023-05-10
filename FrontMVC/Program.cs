@@ -31,15 +31,25 @@ builder.Services.AddScoped<IServicePedido<PedidosMesa>, PedidoService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<IServiceLog<LogModel>, LogService>();
 builder.Services.AddScoped<ClientHelpers>();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
 
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+builder.Services.AddControllersWithViews();
 
 var config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new MesaProfile());
-  
+
 });
 var mapper = config.CreateMapper();
 
@@ -53,9 +63,8 @@ builder.Services.AddSingleton(mapper);
 //    options.Password.RequireLowercase = false;
 //})
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-
-
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -91,5 +100,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
 
 app.Run();

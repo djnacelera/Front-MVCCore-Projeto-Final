@@ -57,7 +57,7 @@
                         @Html.DisplayFor(modelItem => item.Clientes.Nome)
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.Clientes.CPF)
+                        @Html.DisplayFor(modelItem => item.Clientes.CPFConvertido)
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.Ocupada)
@@ -78,7 +78,7 @@
                         </a>
                         <a data-toggle="modal" data-target="#detailsModalMesa" data-descricao="@item.Descricao" data-qtlugares="@item.Lugares"
                        data-ambiente="@item.Ambiente" data-status="@item.StatusMesa" data-ocupada="@item.Ocupada"
-                       data-clientenome="@item.Clientes?.Nome" data-clientecpf="@item.Clientes?.CPF" class="btn btn-sm btn-default">
+                       data-clientenome="@item.Clientes?.Nome" data-clientecpf="@item.Clientes?.CPFConvertido" class="btn btn-sm btn-default">
                             <i class="fa-solid fa-circle-info fa-xl" style="color: #264d92;"></i>
                         </a>
                         @if (item.StatusMesa == FrontMVC.Models.Enuns.StatusMesa.Reservado || item.StatusMesa == FrontMVC.Models.Enuns.StatusMesa.Indisponivel)

@@ -25,7 +25,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <label>CPF: </label>
-                                    <label name="cpf" id="codCpf"></label>
+                                    <label name="cpf" id="codDougras"></label>
                                 </li>
                                 <li class="list-group-item">
                                     <label>Data Inclusão: </label>
@@ -56,18 +56,19 @@
 
         var varNome = button.data('nome');
         var varId = button.data('cod');
-        var varCpf = button.data('cpf');
+        var varCpf = button.data('mcpf');
         var varDtInc = button.data('dtinc').toString();
         var varDtAlt = button.data('dtalt').toString();
 
         console.log(varId);
+        console.log(varCpf);
         console.log(varDtInc);
         console.log(varDtAlt);
         
         
         $("#codNome").text(varNome);
         $("#codNicolas").text(varId);
-        $("#codCpf").text(varCpf);
+        $("#codDougras").text(varCpf);
         $("#coddtinc").text(varDtInc);
         $("#coddtalt").text(varDtAlt);
     });

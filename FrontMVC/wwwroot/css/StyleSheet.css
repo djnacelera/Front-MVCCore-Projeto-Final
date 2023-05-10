@@ -12,4 +12,8 @@
     .no-print {
         display: none;
     }
+
+    body {
+        font-size: 12pt;
+    }
 }

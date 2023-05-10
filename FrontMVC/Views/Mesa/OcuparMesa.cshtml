@@ -28,7 +28,6 @@
                         </a>
 
                     }
-                    <span asp-validation-for="Clientes.CPF" class="text-danger"></span>
                 </div>
                 <div class="input-group">
                     <input class="input--style-2" type="text" placeholder="Descricao" asp-for="Descricao"
@@ -58,10 +57,12 @@
 }
 <script type="text/jscript">
 
+    $('#cpf').mask('000.000.000-00', { reverse: true });
     var cpf = $("#cpf").val()
     $(document).ready(function () {
         $('#btnBuscar').on('click', function () {
             cpf = $("#cpf").val()
+
             $.ajax
                 ({
                     contentType: "text/plain",

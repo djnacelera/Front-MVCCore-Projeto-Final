@@ -9,7 +9,7 @@
         <div class="card-heading3"></div>
         <div class="card-body">
             <h2 class="title">Alterar Cliente</h2>
-            <form asp-action="Alterar" enctype="multipart/form-data">
+            <form asp-action="Alterar" enctype="multipart/form-data" >
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="input-group">
@@ -19,11 +19,12 @@
                 </div>
                 <div class="input-group">
                     <input class="input--style-2" type="text" placeholder="CPF" asp-for="CPF"
-                           data-val="true" data-val-required="Por favor, insira um CPF">
+                           data-val="true" data-val-required="Por favor, insira um CPF"
+                           id="cpf-mask" maxlength="14">
                     <span asp-validation-for="CPF" class="text-danger"></span>
                 </div>
                 <div class="p-t-30">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input id="enviar" type="submit" value="Save" class="btn btn-primary" />
                 </div>
  <br />
             <div class="text-center">

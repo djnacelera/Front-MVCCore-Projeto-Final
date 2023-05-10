@@ -3,11 +3,13 @@ using FrontMVC.Models.Cliente;
 using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace FrontMVC.Controllers
 {
+    [Authorize]
     public class ClienteController : Controller
     {
         private readonly IServiceCliente<ClienteModel> _clienteService;
@@ -19,7 +21,7 @@ namespace FrontMVC.Controllers
 
         //public async Task<IActionResult> Index()
         //{
-                
+
         //    return View(list);
         //}
 

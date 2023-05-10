@@ -5,25 +5,37 @@ using FrontMVC.Models.Mesa;
 using FrontMVC.Models.Pedido;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Newtonsoft.Json;
 using System.IO;
 using X.PagedList;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace FrontMVC.Controllers
 {
+    [Authorize]
     public class MesaController : Controller
     {
         private readonly IServiceMesa<MesaModel> _service;
         private readonly IMapper _mapper;
         private readonly IServicePedido<PedidosMesa> _pedido;
+
         public MesaController(IServiceMesa<MesaModel> service, IMapper mapper, IServicePedido<PedidosMesa> pedido)
         {
             _service = service;
             _mapper = mapper;
             _pedido = pedido;
         }
-            
+
+           
         public async Task<IActionResult> Index(string? like, int? page)
         {
             int pageSize = 10;
@@ -109,7 +121,11 @@ namespace FrontMVC.Controllers
         public async Task<IActionResult> DesocuparMesa(Guid id, string cpf)
         {
             IEnumerable<PedidosMesa> list = await _pedido.BaixarPedidosLiberarMesa(id, cpf);
+
+            ViewData["lista"] = list;
+
             return View(list);
+
             /*var retorno = await _service.DesocuparMesa(id);
 
             if (retorno)

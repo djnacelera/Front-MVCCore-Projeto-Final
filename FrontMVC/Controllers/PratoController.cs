@@ -1,6 +1,7 @@
 ﻿using FrontMVC.Interfaces;
 using FrontMVC.Models.Prato;
 using FrontMVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Drawing;
@@ -11,6 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace FrontMVC.Controllers
 {
+    [Authorize]
     public class PratoController : Controller
     {
         private readonly IServicePrato<PratoModel> pratoService;

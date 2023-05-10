@@ -68,6 +68,14 @@ main {
     padding: 10px 0 0 0;
 }
 
+button.nav-link.btn.btn-link {
+    color: white;
+}
+
+button.nav-link.btn.btn-link:hover {
+    color: black;
+}
+
 
 .footer a {
     color: white !important;
