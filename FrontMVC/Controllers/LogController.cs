@@ -21,7 +21,7 @@ namespace FrontMVC.Controllers
 
         public async Task<IActionResult> Index(string? like, int? page)
         {
-            int pageSize = 10;
+            int pageSize = 50;
             int pageNumber = (page ?? 1);
             var list = await _logService.Listar();
 
